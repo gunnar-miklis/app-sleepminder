@@ -1,0 +1,33 @@
+.welcome {
+	min-height: 100%;
+	text-align: center;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+
+	padding: 10px
+}
+
+.welcome div:first-child {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 50px;
+
+	margin-top: 60%;
+}
+.welcome div:first-child h1 {
+	font-weight: 700;
+	font-size: 32px;
+	line-height: 50px;
+}
+.welcome div:first-child p {
+	font-size: 20px;
+	line-height: 25px;
+}
+
+.welcome h1.brand-title {
+	font-size: 18px;
+}

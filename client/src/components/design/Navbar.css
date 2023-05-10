@@ -1,0 +1,18 @@
+nav {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	padding: 10px 0px;
+	gap: 56px;
+
+	position: absolute;
+	left: 0%;
+	right: 0%;
+	top: 2.6%;
+	bottom: -3.9%;
+
+	color: var(--col-text);
+	background: var(--col-primary);
+	border-top: 0.2px solid var(--col-text);
+}
