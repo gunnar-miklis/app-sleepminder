@@ -57,38 +57,17 @@ a {
 	color: var(--col-primary);
 	background: var(--col-btn);
 	border-radius: 10px;
-}
-.btn-sm {
-	padding: 8px;
-}
-.btn-lg {
+
 	padding: 13px;
 }
-
-input,
-select {
-	width: 330px;
-
-	display: flex;
-	padding: 10px 15px;
-
-	background: var(--col-primary);
-	border: 1px solid var(--col-graph-light);
-	border-radius: 5px;
+.btn-sm {
+	min-width: 160px;
 }
-
-select {
-	flex-direction: row;
-	justify-content: space-between;
-	align-items: center;
+.btn-lg {
+	min-width: 290px;
 }
-
-input {
-	flex-direction: column;
-	align-items: flex-start;
-}
-
-input:invalid {
-	color: var(--col-error-delete);
-	border: 1px solid var(--col-error-delete);
+.btn-skip {
+	font-weight: 400;
+	padding: 13px;
+	border-bottom: 2px solid var(--col-text );
 }

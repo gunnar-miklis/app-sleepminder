@@ -1,14 +1,20 @@
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
-import StartPage from './pages/StartPage';
-import WelcomePage from './pages/WelcomePage';
+import Start from './pages/Start';
+import Welcome from './pages/Welcome';
+import SetupStepOne from './pages/setup/Step1';
+import SetupStepTwo from './pages/setup/Step2';
+import SetupStepThree from './pages/setup/Step3';
 
 function App() {
 	return (
 		<main>
 			<Routes>
-				<Route path='/start' element={<StartPage />} />
-				<Route path='/welcome' element={<WelcomePage />} />
+				<Route path="/start" element={<Start />} />
+				<Route path="/welcome" element={<Welcome />} />
+				<Route path="/setup/step-1" element={<SetupStepOne />} />
+				<Route path="/setup/step-2" element={<SetupStepTwo />} />
+				<Route path="/setup/step-3" element={<SetupStepThree />} />
 			</Routes>
 		</main>
 	);
