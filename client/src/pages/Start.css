@@ -34,5 +34,5 @@
 .start div:last-child a {
 	font-size: 14px;
 	font-style: normal;
-	color: var(--col-btn);
+	color: var(--col-text);
 }

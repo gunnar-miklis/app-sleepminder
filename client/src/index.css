@@ -23,10 +23,12 @@
 }
 
 /* RESET ------------------------------------------------------------- */
-* {
+*,
+*::before,
+*::after {
 	box-sizing: border-box;
 }
-#root, html, body, main, nav, h1, h2, h3, p, a, button, form, input, select {
+#root, html, body, div, main, nav, h1, h2, h3, p, a, button, form, input, select {
 	margin: 0;
 	padding: 0;
 }
@@ -48,6 +50,6 @@ p {
 }
 
 #root {
-	/* padding: 45px 30px 40px; */
-	padding: 0 30px 40px;
+	padding: 40px 30px;
+	/* padding: 0 30px 40px; */
 }
