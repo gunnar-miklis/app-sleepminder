@@ -1,10 +1,7 @@
-import { Link } from 'react-router-dom';
-import './setup.css';
-import avatar from '../../assets/avatar.png';
-import avatarEdit from '../../assets/avatar-edit.png';
+import Avatar from '../design/Avatar';
 import { useState } from 'react';
 
-function SetupStepOne() {
+function SetupStepOne( { nextStep, previousStep } ) {
 	const [name, setName] = useState();
 	const [nameIsValid, setNameIsValid] = useState();
 	const [birth, setBirth] = useState();
@@ -75,24 +72,10 @@ function SetupStepOne() {
 	}
 
 	return (
-		<div className="setup">
-
-			<div className="step-progress-bar">
-				<div className="active" data-step="Step 1"></div>
-				<div></div>
-				<div></div>
-				<div></div>
-			</div>
-
+		<>
 			<h1>Set your profile</h1>
 
-			<div className='avatar'>
-				<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<circle cx="10" cy="10" r="9.5" fill="#262134" stroke="#F5F2FF"/>
-					<path d="M11.9062 5.37495L10.7344 6.54683L13.0781 8.89058L14.25 7.7187L11.9062 5.37495ZM9.5625 7.7187L4.875 12.4062V14.75H7.21875L11.9062 10.0625L9.5625 7.7187Z" fill="#F5F2FF"/>
-				</svg>
-				<img src={avatar} alt="avatar" />
-			</div>
+			<Avatar />
 
 			<form onSubmit={handleSubmit}>
 				<input
@@ -131,10 +114,10 @@ function SetupStepOne() {
 
 			<div className='btn-wrapper'>
 				<div></div>
-				<Link to="/setup/step-2" className="btn-sm">Next</Link>
+				<button onClick={()=>nextStep( 2 )} className="btn-sm">Next</button>
 			</div>
 
-		</div>
+		</>
 	);
 }
 

@@ -1,8 +1,7 @@
-import { Link } from 'react-router-dom';
-import './setup.css';
+import './Step3.css';
 import { useState } from 'react';
 
-function SetupStepThree() {
+function SetupStepThree( { nextStep, previousStep } ) {
 	const [meditation, setMeditation] = useState( false );
 	const [read, setRead] = useState( 'Read' );
 	const [sounds, setSounds] = useState( 'Sounds/Music' );
@@ -16,14 +15,7 @@ function SetupStepThree() {
 	}
 
 	return (
-		<div className="setup">
-
-			<div className="step-progress-bar">
-				<div></div>
-				<div></div>
-				<div className="active" data-step="Step 3"></div>
-				<div></div>
-			</div>
+		<>
 
 			<div>
 				<h1>Get sleep tips that fit you</h1>
@@ -90,11 +82,11 @@ function SetupStepThree() {
 			</form>
 
 			<div className='btn-wrapper'>
-				<Link to="/setup/step-2" className="btn-skip">Skip</Link>
-				<Link to="/setup/step-4" className="btn-sm">Next</Link>
+				<button onClick={()=>previousStep( 2 )} className="btn-skip">Back</button>
+				<button onClick={()=>nextStep( 4 )} className="btn-sm">Next</button>
 			</div>
 
-		</div>
+		</>
 	);
 }
 

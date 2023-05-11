@@ -1,8 +1,7 @@
-import { Link } from 'react-router-dom';
-import './setup.css';
+import './Step2.css';
 import { useState } from 'react';
 
-function SetupStepTwo() {
+function SetupStepTwo( { nextStep, previousStep } ) {
 	const [wakeTime, setWakeTime] = useState();
 	const [wakeTimeIsValid, setWakeTimeIsValid] = useState();
 
@@ -21,14 +20,7 @@ function SetupStepTwo() {
 	}
 
 	return (
-		<div className="setup">
-
-			<div className="step-progress-bar">
-				<div></div>
-				<div className="active" data-step="Step 2"></div>
-				<div></div>
-				<div></div>
-			</div>
+		<>
 
 			<div>
 				<br/>
@@ -57,11 +49,12 @@ function SetupStepTwo() {
 			<br/>
 
 			<div className='btn-wrapper'>
-				<Link to="/setup/step-1" className="btn-skip">Skip</Link>
-				<Link to="/setup/step-3" className="btn-sm">Next</Link>
+				
+			<button onClick={()=>previousStep( 1 )} className="btn-skip">Back</button>
+				<button onClick={()=>nextStep( 3 )} className="btn-sm">Next</button>
 			</div>
 
-		</div>
+		</>
 	);
 }
 

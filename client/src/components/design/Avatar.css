@@ -1,0 +1,7 @@
+.avatar {
+	position: relative;
+}
+.avatar svg {
+	position: absolute;
+	right: 5px;
+}

@@ -1,24 +1,19 @@
-import { Link } from 'react-router-dom';
-import './setup.css';
+import './Step4.css';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-function SetupStepFour() {
+function SetupStepFour( { previousStep } ) {
 	const [caffeine, setCaffeine] = useState( false );
 	const [alcohol, setAlcohol] = useState( false );
 
+	const navigate = useNavigate();
+
 	function handleSubmit( e ) {
-		return;
+		navigate('/home');
 	}
 
 	return (
-		<div className="setup">
-
-			<div className="step-progress-bar">
-				<div></div>
-				<div></div>
-				<div></div>
-				<div className="active" data-step="Step 4"></div>
-			</div>
+		<>
 
 			<div>
 				<br/>
@@ -117,11 +112,11 @@ function SetupStepFour() {
 			<br/>
 
 			<div className='btn-wrapper'>
-				<Link to="/setup/step-3" className="btn-skip">Skip</Link>
-				<Link to="/setup/home" className="btn-sm">Next</Link>
+				<button onClick={()=>previousStep( 3 )} className="btn-skip">Back</button>
+				<button onClick={handleSubmit} className="btn-sm">Done</button>
 			</div>
 
-		</div>
+		</>
 	);
 }
 
