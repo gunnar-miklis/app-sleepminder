@@ -53,12 +53,14 @@ a {
 	color: var(--col-text);
 }
 
-.btn-sm, .btn-lg {
-	color: var(--col-primary);
-	background: var(--col-btn);
+.btn-sm, .btn-lg, .btn-skip {
+	max-height: 45px;
+	
+	padding: 13px;
 	border-radius: 10px;
 
-	padding: 13px;
+	color: var(--col-primary);
+	background-color: var(--col-btn);
 }
 .btn-sm {
 	min-width: 160px;
@@ -67,7 +69,11 @@ a {
 	min-width: 290px;
 }
 .btn-skip {
-	font-weight: 400;
 	padding: 13px;
 	border-bottom: 2px solid var(--col-text );
+	border-radius: unset;
+	
+	font-weight: 400;
+	color: var(--col-text);
+	background-color: unset;
 }
