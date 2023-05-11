@@ -4,9 +4,16 @@ import { useState } from 'react';
 
 function SetupStepTwo() {
 	const [wakeTime, setWakeTime] = useState();
+	const [wakeTimeIsValid, setWakeTimeIsValid] = useState();
 
 	function handleWakeTime( e ) {
-		setWakeTime( e.target.value );
+		if ( e.target.value ) {
+			setWakeTime( e.target.value );
+			setWakeTimeIsValid( 'valid' );
+		} else {
+			setWakeTime();
+			setWakeTimeIsValid();
+		}
 	}
 
 	function handleSubmit( e ) {
@@ -18,7 +25,7 @@ function SetupStepTwo() {
 
 			<div className="step-progress-bar">
 				<div></div>
-				<div className="active"></div>
+				<div className="active" data-step="Step 2"></div>
 				<div></div>
 				<div></div>
 			</div>
@@ -29,7 +36,7 @@ function SetupStepTwo() {
 				<p>Allow access to the alarm on your phone and the app will plan your day.</p>
 				<br/>
 				<label className='switch'>
-					<input type="checkbox" />
+					<input type="checkbox" className='toggle'/>
 					<span className="slider round"></span>
 				</label>
 			</div>
@@ -37,7 +44,13 @@ function SetupStepTwo() {
 			<div>
 				<p>or set your wakeup time manually.</p>
 				<form onSubmit={handleSubmit}>
-					<input type="time" value={wakeTime} onChange={handleWakeTime} placeholder="wake up time"/>
+					<input
+						type="time"
+						value={wakeTime}
+						onChange={handleWakeTime}
+						placeholder="wake up time"
+						className={wakeTimeIsValid}
+					/>
 				</form>
 			</div>
 

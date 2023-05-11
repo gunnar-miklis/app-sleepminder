@@ -78,7 +78,7 @@ function SetupStepOne() {
 		<div className="setup">
 
 			<div className="step-progress-bar">
-				<div className="active"></div>
+				<div className="active" data-step="Step 1"></div>
 				<div></div>
 				<div></div>
 				<div></div>
@@ -97,8 +97,7 @@ function SetupStepOne() {
 					value={name}
 					onChange={handleName}
 					placeholder='Name'
-					className={nameIsValid}
-					required/>
+					className={nameIsValid} />
 				<input
 					type={inputType}
 					onFocus={()=> setInputType( 'date' )}
