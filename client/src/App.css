@@ -53,10 +53,30 @@ a {
 	color: var(--col-text);
 }
 
+.flex-row-between {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+.flex-col-between {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;	
+}
+.flex-justify-start {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+}
+.flex-align-center {
+	align-items: center;
+}
+
 .btn-sm, .btn-lg, .btn-skip {
 	max-height: 45px;
-	
+
 	padding: 13px;
+	border: unset;
 	border-radius: 10px;
 
 	color: var(--col-primary);
