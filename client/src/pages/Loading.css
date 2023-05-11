@@ -1,0 +1,9 @@
+.loading {
+	min-height: 100%;
+}
+.loading div:first-child {
+	margin-top: 80%;
+}
+.loading h1.brand-title {
+	font-size: 36px;
+}

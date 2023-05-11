@@ -1,10 +1,7 @@
-import { Link } from 'react-router-dom';
-import './setup.css';
-import avatar from '../../assets/avatar.png';
-import avatarEdit from '../../assets/avatar-edit.png';
+import Avatar from '../design/Avatar';
 import { useState } from 'react';
 
-function SetupStepOne() {
+function SetupStepOne( { nextStep, previousStep } ) {
 	const [name, setName] = useState();
 	const [nameIsValid, setNameIsValid] = useState();
 	const [birth, setBirth] = useState();
@@ -75,21 +72,10 @@ function SetupStepOne() {
 	}
 
 	return (
-		<div className="setup">
-
-			<div className="step-progress-bar">
-				<div className="active"></div>
-				<div></div>
-				<div></div>
-				<div></div>
-			</div>
-
+		<>
 			<h1>Set your profile</h1>
 
-			<div className='avatar'>
-				<img src={avatarEdit} alt='avatar-edit' />
-				<img src={avatar} alt="avatar" />
-			</div>
+			<Avatar />
 
 			<form onSubmit={handleSubmit}>
 				<input
@@ -97,8 +83,7 @@ function SetupStepOne() {
 					value={name}
 					onChange={handleName}
 					placeholder='Name'
-					className={nameIsValid}
-					required/>
+					className={nameIsValid} />
 				<input
 					type={inputType}
 					onFocus={()=> setInputType( 'date' )}
@@ -129,10 +114,10 @@ function SetupStepOne() {
 
 			<div className='btn-wrapper'>
 				<div></div>
-				<Link to="/setup/step-2" className="btn-sm">Next</Link>
+				<button onClick={()=>nextStep( 2 )} className="btn-sm">Next</button>
 			</div>
 
-		</div>
+		</>
 	);
 }
 

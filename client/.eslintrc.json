@@ -27,13 +27,14 @@
 		"no-tabs": 0,
 		"indent": ["error", "tab"],
 		"require-jsdoc": ["error", {
-				"require": {
-						"FunctionDeclaration": false,
-						"MethodDefinition": false,
-						"ClassDeclaration": false,
-						"ArrowFunctionExpression": false,
-						"FunctionExpression": false
-				}
+		"require": {
+				"FunctionDeclaration": false,
+				"MethodDefinition": false,
+				"ClassDeclaration": false,
+				"ArrowFunctionExpression": false,
+				"FunctionExpression": false
+		},
+		"react/prop-types": "off"
 		}]
     }
 }

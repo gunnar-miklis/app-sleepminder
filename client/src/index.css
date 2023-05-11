@@ -7,6 +7,8 @@
 	--col-graph-light: #C3C0CE;
 	--col-error-delete: #F14668;
 
+	--transition: .4s ease-in-out;
+
 	font-family: 'Roboto', Arial, Helvetica, sans-serif;
 	font-weight: 500;
 	font-size: 16px;

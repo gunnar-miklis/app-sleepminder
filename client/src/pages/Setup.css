@@ -1,0 +1,73 @@
+.setup {
+	min-height: 100%;
+	width: 100%;
+	text-align: center;
+
+	position: relative;
+}
+.setup h1 {
+	margin: 76px auto 16px;
+}
+
+.setup form {
+	width: 100%;
+
+	display: flex;
+	flex-direction: column;
+}
+
+.setup input,
+.setup select {
+	width: 100%;
+
+	padding: 12px;
+	margin: 12px 0;
+	display: inline-block;
+	align-items: center;
+	
+	background: var(--col-primary);
+	border: 1px solid var(--col-graph-light);
+	border-radius: 5px;
+
+	font-weight: 400;
+	color: var(--col-graph-light);
+
+	position: relative;
+}
+/* Custom select arrow */
+.setup select {
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	background: url('../../assets/arrow.png');
+	background-repeat: no-repeat;
+	background-position: right 13px center;
+}
+/* Custom placeholder color */
+.setup input::placeholder {
+	color: var(--col-graph-light)
+}
+/* Custom color for calendar icon */
+.setup input {
+	color-scheme: dark;
+}
+/* Custom color for valid input */
+.setup select.valid:valid,
+.setup input.valid:valid {
+	border: 2px solid var(--col-btn);
+}
+/* Custom color on invalid input */
+.setup select:invalid,
+.setup input:invalid {
+	color: var(--col-error-delete);
+	border: 2px solid var(--col-error-delete);
+}
+
+.setup .btn-wrapper {
+	width: 100%;
+
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}

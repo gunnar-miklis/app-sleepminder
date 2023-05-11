@@ -1,20 +1,22 @@
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
-import Start from './pages/Start';
+import Loading from './pages/Loading';
 import Welcome from './pages/Welcome';
-import SetupStepOne from './pages/setup/Step1';
-import SetupStepTwo from './pages/setup/Step2';
-import SetupStepThree from './pages/setup/Step3';
+import SetupStepOne from './components/setup/Step1';
+import SetupStepTwo from './components/setup/Step2';
+import SetupStepThree from './components/setup/Step3';
+import SetupStepFour from './components/setup/Step4';
+import UserAreas from './pages/UserAreas';
+import Setup from './pages/Setup';
 
 function App() {
 	return (
 		<main>
 			<Routes>
-				<Route path="/start" element={<Start />} />
+				<Route path="/loading" element={<Loading />} />
 				<Route path="/welcome" element={<Welcome />} />
-				<Route path="/setup/step-1" element={<SetupStepOne />} />
-				<Route path="/setup/step-2" element={<SetupStepTwo />} />
-				<Route path="/setup/step-3" element={<SetupStepThree />} />
+				<Route path="/setup" element={<Setup />} />
+				<Route path="/home" element={<UserAreas />} />
 			</Routes>
 		</main>
 	);

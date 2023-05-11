@@ -1,0 +1,10 @@
+div.daily-routine,
+div.week-days {
+	width: 100%;
+	max-width: 300px;
+
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: space-evenly;
+	align-items: center;
+}

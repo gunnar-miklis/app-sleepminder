@@ -1,0 +1,38 @@
+.step-progress-bar {
+	width: 100%;
+	height: 20px;
+
+	display: flex;
+	justify-content: center;
+	gap: 10px;
+
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+.step-progress-bar div {
+	width: 22%;
+
+	align-self: flex-start;
+
+	border-bottom: 4px solid var(--col-graph-light);
+	border-radius: 3px;
+}
+.step-progress-bar div.active {
+	position: relative;
+
+	align-self: flex-end;
+	
+	border-bottom: 4px solid var(--col-btn);
+}
+.step-progress-bar div.active::before {
+	position: absolute;
+	top: -20px;
+	left: 0;
+
+	content: attr(data-step);
+	text-align: left;
+	font-weight: 400;
+	font-size: 14px;
+	color: var(--col-btn);
+}
