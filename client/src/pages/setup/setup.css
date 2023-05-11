@@ -55,10 +55,9 @@
 .setup .avatar {
 	position: relative;
 }
-.setup .avatar img:first-child {
+.setup .avatar svg {
 	position: absolute;
 	right: 5px;
-
 }
 
 .setup form {
@@ -201,7 +200,7 @@
   	width: 0;
 	display: none;
 }
-.setup svg {
+.setup form.sleep-tips svg {
 	display: none;
 	opacity: 0;
 }
@@ -218,4 +217,15 @@
 	font-weight: 500;
 	background-color: var(--col-graph-light);
 	color: var(--col-primary);
+}
+/* step 4  */
+div.daily-routine,
+div.week-days {
+	width: 100%;
+	max-width: 300px;
+
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: space-evenly;
+	align-items: center;
 }
