@@ -58,18 +58,38 @@ a {
 	flex-direction: row;
 	justify-content: space-between;
 }
+.flex-row-center {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
 .flex-col-between {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;	
 }
-.flex-justify-start {
+.flex-col-center {
 	display: flex;
-	flex-direction: row;
-	justify-content: flex-start;
+	flex-direction: column;
+	justify-content: center;	
+}
+.flex-col-start {
+	justify-content: flex-start;	
 }
 .flex-align-center {
 	align-items: center;
+}
+.gap-sm {
+	gap: 10px;
+}
+.gap-md {
+	gap: 20px;
+}
+.gap-lg {
+	gap: 30px;
+}
+.gap-xl {
+	gap: 50px;
 }
 
 .btn-sm, .btn-lg, .btn-skip {

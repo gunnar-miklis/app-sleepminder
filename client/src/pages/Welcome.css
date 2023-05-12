@@ -6,8 +6,6 @@
 }
 
 .welcome div:first-child {
-	gap: 50px;
-
 	margin-top: 50%;
 }
 .welcome div:first-child h1 {
