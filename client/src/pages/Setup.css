@@ -1,5 +1,4 @@
 .setup {
-	min-height: 100%;
 	width: 100%;
 	text-align: center;
 
@@ -19,6 +18,7 @@
 .setup input,
 .setup select {
 	width: 100%;
+	max-width: 400px;
 
 	padding: 12px;
 	margin: 12px 0;
@@ -65,6 +65,10 @@
 
 .setup .btn-wrapper {
 	width: 100%;
+	padding: 40px 30px;
+
+	position: fixed;
+	bottom: 20px;
 
 	display: flex;
 	flex-direction: row;

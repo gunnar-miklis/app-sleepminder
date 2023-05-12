@@ -1,4 +1,4 @@
-import Avatar from '../design/Avatar';
+import Avatar from './../Avatar';
 import { useState } from 'react';
 
 function SetupStepOne( { nextStep, previousStep } ) {
@@ -77,19 +77,19 @@ function SetupStepOne( { nextStep, previousStep } ) {
 
 			<Avatar />
 
-			<form onSubmit={handleSubmit}>
+			<form onSubmit={handleSubmit} className='flex-col-between flex-align-center'>
 				<input
 					type="text"
 					value={name}
 					onChange={handleName}
-					placeholder='Name'
+					placeholder="Name"
 					className={nameIsValid} />
 				<input
 					type={inputType}
 					onFocus={()=> setInputType( 'date' )}
 					value={birth}
 					onChange={handleBirth}
-					placeholder='Day of birth (dd/mm/yyyy)'
+					placeholder="Day of birth (dd/mm/yyyy)"
 					className={birthIsValid} />
 				<select
 					onChange={handleGender}
@@ -112,7 +112,7 @@ function SetupStepOne( { nextStep, previousStep } ) {
 					className={heightIsValid} />
 			</form>
 
-			<div className='btn-wrapper'>
+			<div className="btn-wrapper">
 				<div></div>
 				<button onClick={()=>nextStep( 2 )} className="btn-sm">Next</button>
 			</div>

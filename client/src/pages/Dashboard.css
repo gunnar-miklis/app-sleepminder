@@ -1,16 +1,17 @@
-.user-area {
+.dashboard {
 	width: 100%;
-	min-height: 100%;
 }
 .card {
 	width: 100%;
 
 	align-items: center;
 
-	margin-top: 20px;
-	margin-bottom: 20px;
+	margin: 0 0 15px;
 	padding: 16px;
 
 	border-radius: 12px;
 	background-color: var(--col-overlay);
+}
+.card-header {
+	padding-top: 5px;
 }

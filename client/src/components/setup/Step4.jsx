@@ -9,7 +9,7 @@ function SetupStepFour( { previousStep } ) {
 	const navigate = useNavigate();
 
 	function handleSubmit( e ) {
-		navigate('/home');
+		navigate( '/dashboard' );
 	}
 
 	return (
@@ -22,18 +22,18 @@ function SetupStepFour( { previousStep } ) {
 				<br/>
 			</div>
 
-			<div className='daily-routine'>
+			<div className="daily-routine">
 				<p>Caffeine</p>
 				<svg width="17" height="21" viewBox="0 0 17 21" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<path d="M10.5 7.5C10.5 6.5 11.214 5.5 12.643 5.5C13.4007 5.5 14.1274 5.199 14.6632 4.6632C15.199 4.12741 15.5 3.40072 15.5 2.643V2M6.5 7.5V7C6.5 6.20435 6.81607 5.44129 7.37868 4.87868C7.94129 4.31607 8.70435 4 9.5 4C10.0304 4 10.5391 3.78929 10.9142 3.41421C11.2893 3.03914 11.5 2.53043 11.5 2V1.5M15.5 10.1V13.5C15.5 15.0913 14.8679 16.6174 13.7426 17.7426C12.6174 18.8679 11.0913 19.5 9.5 19.5H7.5C5.9087 19.5 4.38258 18.8679 3.25736 17.7426C2.13214 16.6174 1.5 15.0913 1.5 13.5V10.1C1.5 9.94087 1.56321 9.78826 1.67574 9.67574C1.78826 9.56321 1.94087 9.5 2.1 9.5H14.9C15.0591 9.5 15.2117 9.56321 15.3243 9.67574C15.4368 9.78826 15.5 9.94087 15.5 10.1Z" stroke="#F5F2FF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
 				</svg>
-				<label className='switch'>
-					<input type="checkbox" className='toggle' value={caffeine} onChange={( e )=> setCaffeine( !caffeine ? true : false )}/>
+				<label className="switch">
+					<input type="checkbox" className="toggle" value={caffeine} onChange={( e )=> setCaffeine( !caffeine ? true : false )}/>
 					<span className="slider round"></span>
 				</label>
 			</div>
 			{ caffeine && (
-				<div className='week-days'>
+				<div className="week-days">
 					<svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<rect width="30" height="30" rx="15" fill="#4F4B5D"/>
 						<path d="M8.89773 9.36364H11.4773L14.9318 17.7955H15.0682L18.5227 9.36364H21.1023V21H19.0795V13.0057H18.9716L15.7557 20.9659H14.2443L11.0284 12.9886H10.9205V21H8.89773V9.36364Z" fill="#F5F2FF"/>
@@ -65,19 +65,19 @@ function SetupStepFour( { previousStep } ) {
 				</div>
 			)}
 
-			<div className='daily-routine'>
+			<div className="daily-routine">
 				<p>Alcohol</p>
 				<svg width="14" height="19" viewBox="0 0 14 19" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<path d="M13.1402 6.90205L11.3915 0.96125C11.3523 0.82815 11.2712 0.711304 11.1601 0.628169C11.0491 0.545034 10.9141 0.500072 10.7754 0.5H3.08172C2.94302 0.500072 2.80807 0.545034 2.69702 0.628169C2.58598 0.711304 2.5048 0.82815 2.46561 0.96125L0.7169 6.90205C0.442535 7.81262 0.428176 8.7818 0.675444 9.70011C0.922712 10.6184 1.42175 11.4492 2.11619 12.0987C3.25852 13.1704 4.72627 13.8292 6.28596 13.9703V17.2143H3.7155C3.54507 17.2143 3.38162 17.282 3.2611 17.4026C3.14059 17.5231 3.07289 17.6866 3.07289 17.8571C3.07289 18.0276 3.14059 18.1912 3.2611 18.3117C3.38162 18.4323 3.54507 18.5 3.7155 18.5H10.1416C10.3121 18.5 10.4755 18.4323 10.596 18.3117C10.7166 18.1912 10.7843 18.0276 10.7843 17.8571C10.7843 17.6866 10.7166 17.5231 10.596 17.4026C10.4755 17.282 10.3121 17.2143 10.1416 17.2143H7.57119V13.9703C9.13085 13.8291 10.5986 13.1703 11.741 12.0987C12.4354 11.4492 12.9344 10.6184 13.1817 9.70011C13.429 8.7818 13.4146 7.81262 13.1402 6.90205ZM3.56208 1.78571H10.2951L11.9088 7.26527C11.9161 7.28937 11.9225 7.31348 11.9289 7.33759C10.2083 7.95473 8.27083 7.20902 7.21935 6.67625C5.19592 5.6517 3.58939 5.52152 2.40457 5.71759L3.56208 1.78571ZM10.8646 11.1594C9.79752 12.1589 8.3904 12.7151 6.92857 12.7151C5.46674 12.7151 4.05962 12.1589 2.99256 11.1594C2.47291 10.6722 2.09975 10.0494 1.91523 9.36132C1.73071 8.67321 1.74216 7.9472 1.94831 7.26527L1.98446 7.14312C2.94838 6.81687 4.48021 6.73009 6.63779 7.82375C7.53343 8.27777 8.98012 8.85634 10.528 8.85634C11.0454 8.85886 11.5605 8.78853 12.0582 8.64741C11.9927 9.60573 11.5661 10.5035 10.8646 11.1594Z" fill="#F5F2FF"/>
 				</svg>
-				<label className='switch'>
-					<input type="checkbox" className='toggle' value={alcohol} onChange={( e )=> setAlcohol( !alcohol ? true : false )}/>
+				<label className="switch">
+					<input type="checkbox" className="toggle" value={alcohol} onChange={( e )=> setAlcohol( !alcohol ? true : false )}/>
 					<span className="slider round"></span>
 				</label>
 			</div>
 
 			{ alcohol && (
-				<div className='week-days'>
+				<div className="week-days">
 					<svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<rect width="30" height="30" rx="15" fill="#4F4B5D"/>
 						<path d="M8.89773 9.36364H11.4773L14.9318 17.7955H15.0682L18.5227 9.36364H21.1023V21H19.0795V13.0057H18.9716L15.7557 20.9659H14.2443L11.0284 12.9886H10.9205V21H8.89773V9.36364Z" fill="#F5F2FF"/>
@@ -111,7 +111,7 @@ function SetupStepFour( { previousStep } ) {
 
 			<br/>
 
-			<div className='btn-wrapper'>
+			<div className="btn-wrapper">
 				<button onClick={()=>previousStep( 3 )} className="btn-skip">Back</button>
 				<button onClick={handleSubmit} className="btn-sm">Done</button>
 			</div>

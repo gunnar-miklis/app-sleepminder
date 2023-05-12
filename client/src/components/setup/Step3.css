@@ -1,10 +1,7 @@
-form.sleep-tips {
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	gap: 22px
-}
-form.sleep-tips div {
+.sleep-tips div {
+	width: 100%;
+	max-width: 400px;
+
 	position: relative;
 
 	display: flex;
@@ -12,7 +9,7 @@ form.sleep-tips div {
 	align-items: center;
     text-align: left;
 }
-form.sleep-tips label {
+.sleep-tips label {
 	width: 100%;
 	font-weight: 400;
 	background-color: var(--col-overlay);
@@ -20,7 +17,7 @@ form.sleep-tips label {
 	transition: var(--transition);
 }
 /* Hide default checkbox, will be replaced by svg */
-form.sleep-tips input[type=checkbox] {
+.sleep-tips input[type=checkbox] {
 	opacity: 0;
 	height: 0;
   	width: 0;
@@ -31,7 +28,7 @@ form.sleep-tips svg {
 	opacity: 0;
 }
 /* show svg when checked */
-form.sleep-tips input[type=checkbox]:checked ~ svg {
+.sleep-tips input[type=checkbox]:checked ~ svg {
 	display: inline-block;
 	opacity: 1;
 	position: absolute;
@@ -39,7 +36,7 @@ form.sleep-tips input[type=checkbox]:checked ~ svg {
 	right: 14px;
 }
 /* change styling when checked */
-form.sleep-tips input[type=checkbox]:checked + label {
+.sleep-tips input[type=checkbox]:checked + label {
 	font-weight: 500;
 	background-color: var(--col-graph-light);
 	color: var(--col-primary);

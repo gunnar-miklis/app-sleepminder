@@ -27,8 +27,8 @@ function SetupStepTwo( { nextStep, previousStep } ) {
 				<h1>Get a customized daily routine</h1>
 				<p>Allow access to the alarm on your phone and the app will plan your day.</p>
 				<br/>
-				<label className='switch'>
-					<input type="checkbox" className='toggle'/>
+				<label className="switch">
+					<input type="checkbox" className="toggle"/>
 					<span className="slider round"></span>
 				</label>
 			</div>
@@ -48,9 +48,9 @@ function SetupStepTwo( { nextStep, previousStep } ) {
 
 			<br/>
 
-			<div className='btn-wrapper'>
-				
-			<button onClick={()=>previousStep( 1 )} className="btn-skip">Back</button>
+			<div className="btn-wrapper">
+
+				<button onClick={()=>previousStep( 1 )} className="btn-skip">Back</button>
 				<button onClick={()=>nextStep( 3 )} className="btn-sm">Next</button>
 			</div>
 
