@@ -22,7 +22,7 @@ function SetupStepThree( { nextStep, previousStep } ) {
 				<p>Understanding what helps you fall asleep by checking the matching options.</p>
 			</div>
 
-			<form onSubmit={handleSubmit} className="sleep-tips flex-col-between gap-md">
+			<form onSubmit={handleSubmit} className="sleep-tips flex-col-between flex-align-center gap-md">
 				<div>
 					<input id="meditation" type="checkbox" value={meditation} onChange={( e )=>setMeditation( !meditation ? true : false )} />
 					<label htmlFor="meditation" className="btn-sm">Meditation</label>

@@ -77,7 +77,7 @@ function SetupStepOne( { nextStep, previousStep } ) {
 
 			<Avatar />
 
-			<form onSubmit={handleSubmit}>
+			<form onSubmit={handleSubmit} className='flex-col-between flex-align-center'>
 				<input
 					type="text"
 					value={name}

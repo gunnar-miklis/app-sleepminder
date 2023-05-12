@@ -20,7 +20,7 @@ function Setup() {
 
 	if ( isLoading ) return <Loading />;
 	return (
-		<div className="setup flex-col-between flex-align-center">
+		<div className="setup flex-col-between flex-align-center gap-lg">
 
 			{ step === 1 &&
 				<>

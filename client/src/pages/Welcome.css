@@ -1,8 +1,5 @@
 .welcome {
-	min-height: 100%;
 	text-align: center;
-
-	padding: 10px;
 }
 
 .welcome div:first-child {
@@ -22,6 +19,12 @@
 	font-size: 18px;
 }
 
+.welcome div:last-child {
+	position: absolute;
+	bottom: 0;
+
+	padding: 40px 30px;
+}
 .welcome div:last-child h1 {
 	font-size: 22px;
 	color: var(--col-btn);

@@ -1,6 +1,5 @@
 .dashboard {
 	width: 100%;
-	min-height: 100%;
 }
 .card {
 	width: 100%;
@@ -14,5 +13,5 @@
 	background-color: var(--col-overlay);
 }
 .card-header {
-
+	padding-top: 5px;
 }

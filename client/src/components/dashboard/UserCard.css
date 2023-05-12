@@ -9,10 +9,6 @@
 	position: absolute;
 	top: -50px;
 }
-.user-card p {
-	line-height: 20px;
-	font-size: 11px;
-}
 strong {
 	color: var(--col-secondary);
 	font-weight: 700;

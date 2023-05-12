@@ -6,7 +6,7 @@ import Dashboard from './pages/Dashboard';
 
 function App() {
 	return (
-		<main>
+		<main className='flex-col-evenly flex-align-center'>
 			<Routes>
 				<Route path="/welcome" element={<Welcome />} />
 				<Route path="/setup" element={<Setup />} />
