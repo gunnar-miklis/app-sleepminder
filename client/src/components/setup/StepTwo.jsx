@@ -1,8 +1,8 @@
-import './Step2.css';
+import './StepTwo.css';
 import { useState } from 'react';
 
-function SetupStepTwo( { nextStep, previousStep } ) {
-	const [wakeTime, setWakeTime] = useState();
+export default function StepTwo( { handleStepTwoSubmit } ) {
+	const [wakeTime, setWakeTime] = useState( '' );
 	const [wakeTimeIsValid, setWakeTimeIsValid] = useState();
 
 	function handleWakeTime( e ) {
@@ -15,12 +15,8 @@ function SetupStepTwo( { nextStep, previousStep } ) {
 		}
 	}
 
-	function handleSubmit( e ) {
-		return;
-	}
-
 	return (
-		<>
+		<div className='flex-col-between flex-align-center gap-md'>
 
 			<div>
 				<br/>
@@ -35,27 +31,23 @@ function SetupStepTwo( { nextStep, previousStep } ) {
 
 			<div>
 				<p>or set your wakeup time manually.</p>
-				<form onSubmit={handleSubmit}>
-					<input
-						type="time"
-						value={wakeTime}
-						onChange={handleWakeTime}
-						placeholder="wake up time"
-						className={wakeTimeIsValid}
-					/>
+				<form onSubmit={handleStepTwoSubmit} className='flex-col-between flex-align-center gap-lg'>
+					<label>
+						<input
+							type="time"
+							value={wakeTime}
+							onChange={handleWakeTime}
+							placeholder="wake up time"
+							className={wakeTimeIsValid}
+						/>
+					</label>
+
+					<br/>
+
+					<button className="btn-sm">Next</button>
 				</form>
 			</div>
 
-			<br/>
-
-			<div className="btn-wrapper">
-
-				<button onClick={()=>previousStep( 1 )} className="btn-skip">Back</button>
-				<button onClick={()=>nextStep( 3 )} className="btn-sm">Next</button>
-			</div>
-
-		</>
+		</div>
 	);
 }
-
-export default SetupStepTwo;
