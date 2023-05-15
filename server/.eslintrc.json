@@ -1,45 +1,43 @@
 {
-	"env": {
-		"browser": true,
-		"commonjs": true,
-		"es2021": true
-	},
-	"extends": [
-		"google",
-		"eslint:recommended"
-	],
-	"overrides": [],
-	"parserOptions": {
-		"ecmaVersion": "latest"
-	},
-	"rules": {
+    "env": {
+        "browser": true,
+        "commonjs": true,
+        "es2021": true
+    },
+    "extends": "google",
+    "overrides": [
+    ],
+    "parserOptions": {
+        "ecmaVersion": "latest"
+    },
+    "rules": {
 		"no-console": "off",
 		"max-len": "off",
 		// "arrow-parens": "off",
 		"space-in-parens": [
-			"error",
-			"always"
+				"error",
+				"always"
 		],
 		"object-curly-spacing": [
-			"error",
-			"always"
+				"error",
+				"always"
 		],
 		"no-tabs": 0,
 		"indent": [
-			"error",
-			"tab"
+				"error",
+				"tab"
 		],
 		"require-jsdoc": [
-			"error",
-			{
-				"require": {
-					"FunctionDeclaration": false,
-					"MethodDefinition": false,
-					"ClassDeclaration": false,
-					"ArrowFunctionExpression": false,
-					"FunctionExpression": false
+				"error",
+				{
+						"require": {
+								"FunctionDeclaration": false,
+								"MethodDefinition": false,
+								"ClassDeclaration": false,
+								"ArrowFunctionExpression": false,
+								"FunctionExpression": false
+						}
 				}
-			}
 		]
-	}
+}
 }
