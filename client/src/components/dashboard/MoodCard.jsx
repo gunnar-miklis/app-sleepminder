@@ -1,4 +1,4 @@
-function MoodCard() {
+export default function MoodCard( { moods } ) {
 	return (
 		<>
 			<h3 className="card-header">How did you sleep last night?</h3>
@@ -38,5 +38,3 @@ function MoodCard() {
 		</>
 	);
 }
-
-export default MoodCard;

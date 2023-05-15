@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
 	Chart as ChartJS,
 	CategoryScale,
@@ -12,26 +12,6 @@ import {
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 
-import imgGreat from './../../assets/Great.svg';
-const cpGreat = new Image();
-cpGreat.src = imgGreat;
-
-import imgGood from './../../assets/Good.svg';
-const cpGood = new Image();
-cpGood.src = imgGood;
-
-import imgOk from './../../assets/Ok.svg';
-const cpOk = new Image();
-cpOk.src = imgOk;
-
-import imgBad from './../../assets/Bad.svg';
-const cpBad = new Image();
-cpBad.src = imgBad;
-
-import imgPoor from './../../assets/Poor.svg';
-const cpPoor = new Image();
-cpPoor.src = imgPoor;
-
 ChartJS.register(
 	CategoryScale,
 	LinearScale,
@@ -43,6 +23,28 @@ ChartJS.register(
 	Legend,
 );
 
+// NOTE: import images and convert, so chart.js can read them as point styles
+import imgGreat from './../../assets/moods/Great.svg';
+const cpGreat = new Image();
+cpGreat.src = imgGreat;
+
+import imgGood from './../../assets/moods/Good.svg';
+const cpGood = new Image();
+cpGood.src = imgGood;
+
+import imgOk from './../../assets/moods/Ok.svg';
+const cpOk = new Image();
+cpOk.src = imgOk;
+
+import imgBad from './../../assets/moods/Bad.svg';
+const cpBad = new Image();
+cpBad.src = imgBad;
+
+import imgPoor from './../../assets/moods/Poor.svg';
+const cpPoor = new Image();
+cpPoor.src = imgPoor;
+
+// NOTE: set chart.js options
 export const options = {
 	responsive: true,
 	plugins: {
@@ -75,15 +77,15 @@ export const options = {
 	},
 };
 
-const labels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-
-export default function LineChartCard() {
-	const [chart, setChart] = useState(
-		{
-			labels,
+export default function LineChartCard( { moods } ) {
+	const [chart, setChart] = useState();
+	useEffect( () => {
+		// NOTE: draw chart, when async 'moods' is ready
+		setChart( {
+			labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
 			datasets: [{
 				label: 'Mood',
-				data: [2, 4, 4, 5, 3, 3, 1],
+				data: moods,
 				pointStyle: [cpBad, cpGood, cpGood, cpGreat, cpOk, cpOk, cpPoor],
 				pointRadius: 10,
 				borderColor: '#D9FDED',
@@ -91,9 +93,8 @@ export default function LineChartCard() {
 				fill: true,
 				tension: 0.5,
 			}],
-		},
-	);
-
+		} );
+	}, [moods] );
 
 	return (
 		<>
@@ -102,10 +103,8 @@ export default function LineChartCard() {
 				<p className='p-sm' style={{ 'color': '#D9FDED', 'textDecoration': 'underline' }}>Last 7 days</p>
 			</div>
 			<div className="card flex-col-center flex-align-center">
-				<Line
-					options={options}
-					data={chart}
-				/>
+				{/* NOTE: condition to await async */}
+				{ chart && <Line options={options} data={chart} /> }
 			</div>
 		</>
 	);
