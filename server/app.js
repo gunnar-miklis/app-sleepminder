@@ -15,8 +15,16 @@ const app = express();
 require( './config' )( app );
 
 // 👇 Start handling routes here
+const { isAuthenticated } = require( './middleware/jwt.middleware' ); // COMMENT: require route guard
+
 const indexRoutes = require( './routes/index.routes' );
-app.use( '/api', indexRoutes );
+app.use( '/', indexRoutes );
+
+const authRoutes = require( './routes/auth.routes' );
+app.use( '/auth', authRoutes );
+
+const dashboardRoutes = require( './routes/dashboard.routes' );
+app.use( '/', isAuthenticated, dashboardRoutes );
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require( './error-handling' )( app );

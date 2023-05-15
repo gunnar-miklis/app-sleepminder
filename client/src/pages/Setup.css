@@ -1,7 +1,6 @@
 .setup {
 	width: 100%;
 	text-align: center;
-
 	position: relative;
 }
 .setup h1 {
@@ -10,9 +9,6 @@
 
 .setup form {
 	width: 100%;
-
-	display: flex;
-	flex-direction: column;
 }
 
 .setup input,
@@ -21,9 +17,6 @@
 	max-width: 400px;
 
 	padding: 12px;
-	margin: 12px 0;
-	display: inline-block;
-	align-items: center;
 	
 	background: var(--col-primary);
 	border: 1px solid var(--col-graph-light);
@@ -31,15 +24,13 @@
 
 	font-weight: 400;
 	color: var(--col-graph-light);
-
-	position: relative;
 }
 /* Custom select arrow */
 .setup select {
 	appearance: none;
 	-webkit-appearance: none;
 	-moz-appearance: none;
-	background: url('../../assets/arrow.png');
+	background: url('../assets/arrow.png');
 	background-repeat: no-repeat;
 	background-position: right 13px center;
 }
@@ -61,17 +52,4 @@
 .setup input:invalid {
 	color: var(--col-error-delete);
 	border: 2px solid var(--col-error-delete);
-}
-
-.setup .btn-wrapper {
-	width: 100%;
-	padding: 40px 30px;
-
-	position: fixed;
-	bottom: 20px;
-
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	align-items: center;
 }
