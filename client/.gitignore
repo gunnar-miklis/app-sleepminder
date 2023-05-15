@@ -25,3 +25,6 @@ dist-ssr
 
 .env
 .eslintrc.json
+
+package-lock.json
+vite.config.js

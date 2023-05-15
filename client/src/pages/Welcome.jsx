@@ -1,12 +1,7 @@
-import { Link } from 'react-router-dom';
 import './Welcome.css';
-import { useState } from 'react';
-import Loading from './Loading';
+import { Link } from 'react-router-dom';
 
 function Welcome() {
-	const [isLoading, setIsLoading] = useState( false );
-
-	if ( isLoading ) return <Loading />;
 	return (
 		<div className="welcome flex-col-between flex-align-center">
 			<div className="flex-col-between flex-align-center gap-xl">

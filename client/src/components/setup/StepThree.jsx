@@ -1,18 +1,14 @@
-import './Step3.css';
+import './StepThree.css';
 import { useState } from 'react';
 
-function SetupStepThree( { nextStep, previousStep } ) {
+export default function StepThree( { handleStepThreeSubmit } ) {
 	const [meditation, setMeditation] = useState( false );
-	const [read, setRead] = useState( 'Read' );
-	const [sounds, setSounds] = useState( 'Sounds/Music' );
-	const [yoga, setYoga] = useState( 'Yoga' );
-	const [sex, setSex] = useState( 'Sex' );
-	const [lavender, setLavender] = useState( 'Lavender' );
-	const [shower, setShower] = useState( 'Shower' );
-
-	function handleSubmit( e ) {
-		return;
-	}
+	const [read, setRead] = useState( false );
+	const [sounds, setSounds] = useState( false );
+	const [yoga, setYoga] = useState( false );
+	const [sex, setSex] = useState( false );
+	const [lavender, setLavender] = useState( false );
+	const [shower, setShower] = useState( false );
 
 	return (
 		<>
@@ -22,7 +18,7 @@ function SetupStepThree( { nextStep, previousStep } ) {
 				<p>Understanding what helps you fall asleep by checking the matching options.</p>
 			</div>
 
-			<form onSubmit={handleSubmit} className="sleep-tips flex-col-between flex-align-center gap-md">
+			<form onSubmit={handleStepThreeSubmit} className="sleep-tips flex-col-between flex-align-center gap-md">
 				<div>
 					<input id="meditation" type="checkbox" value={meditation} onChange={( e )=>setMeditation( !meditation ? true : false )} />
 					<label htmlFor="meditation" className="btn-sm">Meditation</label>
@@ -79,15 +75,11 @@ function SetupStepThree( { nextStep, previousStep } ) {
 						<path d="M7.76667 15L3 10.1299L5.01067 8.24675L7.76667 10.8279L13.9893 5L16 7.28896L7.76667 15Z" fill="#262134"/>
 					</svg>
 				</div>
+
+				<button className="btn-sm">Next</button>
 			</form>
 
-			<div className="btn-wrapper">
-				<button onClick={()=>previousStep( 2 )} className="btn-skip">Back</button>
-				<button onClick={()=>nextStep( 4 )} className="btn-sm">Next</button>
-			</div>
 
 		</>
 	);
 }
-
-export default SetupStepThree;

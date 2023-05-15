@@ -21,5 +21,6 @@ ehthumbs.db
 
 # VS Code
 .vscode/*
-
 .eslintrc.json
+
+package-lock.json

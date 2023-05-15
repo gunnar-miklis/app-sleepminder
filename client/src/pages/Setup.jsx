@@ -1,51 +1,141 @@
 import './Setup.css';
-import { useState } from 'react';
-import SetupStepOne from '../components/setup/Step1';
-import SetupStepTwo from '../components/setup/Step2';
-import SetupStepThree from '../components/setup/Step3';
-import SetupStepFour from '../components/setup/Step4';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import StepOne from '../components/setup/StepOne';
+import StepTwo from '../components/setup/StepTwo';
+import StepThree from '../components/setup/StepThree';
+import StepFour from '../components/setup/StepFour';
 import ProgressBar from '../components/setup/ProgressBar';
-import Loading from './Loading';
+import authService from '../service/auth.services';
+
+const user = {
+	username: '',
+	password: '',
+	birth: new Date(),
+	gender: '',
+	weight: 0,
+	height: 0,
+	wakeTime: '',
+	sleepTips: [],
+	caffeine: false,
+	alcohol: false,
+};
 
 function Setup() {
-	const [isLoading, setIsLoading] = useState( false );
+	const navigate = useNavigate();
+	const [errorMessage, setErrorMessage] = useState( '' );
 
-	const [step, setStep] = useState( 1 );
-	function nextStep( step ) {
-		setStep( step );
+	// navigate steps
+	const [currentStep, setCurrentStep] = useState( 1 );
+
+	function handleStepOneSubmit( e ) {
+		e.preventDefault();
+		// valdidate username
+		if ( !e.target[0].value ) {
+			setErrorMessage( 'Provide a username' );
+			return;
+		}
+		// validate password
+		if ( !e.target[1].value ) {
+			setErrorMessage( 'Provide a password' );
+			return;
+		} else if ( !/(?=.*\d)/.test( e.target[1].value ) ) {
+			setErrorMessage( 'Password musst include a digit.' );
+			return;
+		} else if ( !/(?=.*[a-z])/.test( e.target[1].value ) ) {
+			setErrorMessage( 'Password musst include a lowercase character.' );
+			return;
+		} else if ( !/(?=.*[A-Z])/.test( e.target[1].value ) ) {
+			setErrorMessage( 'Password musst include a UPPERcase character.' );
+			return;
+		} else if ( !/(?=.*).{6,}/.test( e.target[1].value ) ) {
+			setErrorMessage( 'Password musst have at least 6 or more characters.' );
+			return;
+		}
+		// valdiate gender select, if empty write ''
+		if ( e.target[3].value === 'What best describes your gender?' ) e.target[3].value = '';
+
+		// store step one in 'user' object
+		user.username = e.target[0].value;
+		user.password = e.target[1].value;
+		user.birth = e.target[2].value;
+		user.gender = e.target[3].value;
+		user.weight = e.target[4].value;
+		user.height = e.target[5].value;
+		setCurrentStep( currentStep + 1 );
+		setErrorMessage( '' );
 	}
-	function previousStep( step ) {
-		setStep( step );
+	console.log( 'user.wakeTime object :>> ', user.wakeTime );
+	function handleStepTwoSubmit( e ) {
+		console.log( 'e.target[0].value :>> ', e.target[0].value );
+		user.wakeTime = e.target[0].value;
+		setCurrentStep( currentStep + 1 );
+	}
+	function handleStepThreeSubmit( e ) {
+		const sleepTips = [];
+		sleepTips.push( e.target[0].value );
+		sleepTips.push( e.target[1].value );
+		sleepTips.push( e.target[2].value );
+		sleepTips.push( e.target[3].value );
+		sleepTips.push( e.target[4].value );
+		sleepTips.push( e.target[5].value );
+		sleepTips.push( e.target[6].value );
+		user.sleepTips = sleepTips;
+		setCurrentStep( currentStep + 1 );
+	}
+	function handleStepFourSubmit( e ) {
+		e.preventDefault();
+		user.caffeine = e.target[0].value;
+		user.alcohol = e.target[1].value;
+		console.log( 'user before signup :>> ', user );
+		authService.signup( user )
+			.then( ( res ) => {
+				navigate( '/login' );
+			} )
+			.catch( ( err ) => {
+				console.log( 'err client signup :>> ', err );
+				setErrorMessage( err.response.data.message );
+			} );
 	}
 
-	if ( isLoading ) return <Loading />;
 	return (
 		<div className="setup flex-col-between flex-align-center gap-lg">
 
-			{ step === 1 &&
+			{ currentStep === 1 &&
 				<>
-					<ProgressBar currentStep={step} />
-					<SetupStepOne nextStep={nextStep} />
+					<ProgressBar currentStep={currentStep} />
+					<StepOne
+						handleStepOneSubmit={handleStepOneSubmit}
+					/>
 				</>
 			}
-			{ step === 2 &&
+			{ currentStep === 2 &&
 				<>
-					<ProgressBar currentStep={step} />
-					<SetupStepTwo nextStep={nextStep} previousStep={previousStep} />
+					<ProgressBar currentStep={currentStep} />
+					<StepTwo
+						handleStepTwoSubmit={handleStepTwoSubmit}
+					/>
 				</>
 			}
-			{ step === 3 &&
+			{ currentStep === 3 &&
 				<>
-					<ProgressBar currentStep={step} />
-					<SetupStepThree nextStep={nextStep} previousStep={previousStep}/>
+					<ProgressBar currentStep={currentStep} />
+					<StepThree
+						handleStepThreeSubmit={handleStepThreeSubmit}
+					/>
 				</>
 			}
-			{ step === 4 &&
+			{ currentStep === 4 &&
 				<>
-					<ProgressBar currentStep={step} />
-					<SetupStepFour previousStep={previousStep} />
+					<ProgressBar currentStep={currentStep} />
+					<StepFour
+						handleStepFourSubmit={handleStepFourSubmit}
+						errorMessage={errorMessage}
+					/>
 				</>
 			}
+
+			{ errorMessage && <p>{errorMessage}</p> }
 		</div>
 	);
 }

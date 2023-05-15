@@ -1,8 +1,31 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 
 ChartJS.register( ArcElement, Tooltip, Legend );
+
+// NOTE: set chart.js options and custom hover bevhavior
+export const options = {
+	responsive: true,
+	plugins: {
+		legend: {
+			display: true,
+			position: 'bottom',
+			align: 'center',
+			labels: {
+				usePointStyle: true,
+				pointStyle: 'circle',
+				color: '#F5F2FF',
+				padding: 20,
+			},
+			onHover: handleHover,
+			onLeave: handleLeave,
+		},
+	},
+	title: {
+		display: false,
+	},
+};
 
 // Append '4d' to the colors (alpha channel), except for the hovered index
 function handleHover( evt, item, legend ) {
@@ -19,46 +42,30 @@ function handleLeave( evt, item, legend ) {
 	legend.chart.update();
 }
 
-export default function DoughnutChartCard() {
-	const [chart, setChart] = useState( {
-		labels: ['Great', 'Good', 'Ok', 'Bad', 'Poor'],
-		datasets: [
+export default function DoughnutChartCard( { moods } ) {
+	const [chart, setChart] = useState();
+	useEffect( () => {
+		// NOTE: draw chart, when async 'moods' is ready
+		setChart(
 			{
-				label: 'Mood',
-				data: [1, 2, 1, 2, 1],
-				backgroundColor: [
-					'#D9FDED',
-					'#BB86FC',
-					'#F5F2FF',
-					'#C3C0CE',
-					'#262134',
+				labels: ['Great', 'Good', 'Ok', 'Bad', 'Poor'],
+				datasets: [
+					{
+						label: 'Mood',
+						data: [1, 2, 1, 2, 1],
+						backgroundColor: [
+							'#D9FDED',
+							'#BB86FC',
+							'#F5F2FF',
+							'#C3C0CE',
+							'#262134',
+						],
+						borderWidth: 0,
+					},
 				],
-				borderWidth: 0,
 			},
-		],
-	} );
-
-	const options = {
-		responsive: true,
-		plugins: {
-			legend: {
-				display: true,
-				position: 'bottom',
-				align: 'center',
-				labels: {
-					usePointStyle: true,
-					pointStyle: 'circle',
-					color: '#F5F2FF',
-					padding: 20,
-				},
-				onHover: handleHover,
-				onLeave: handleLeave,
-			},
-		},
-		title: {
-			display: false,
-		},
-	};
+		);
+	}, [moods] );
 
 	return (
 		<>
@@ -68,7 +75,8 @@ export default function DoughnutChartCard() {
 			</div>
 			<div className="card flex-col-center flex-align-center gap-md">
 				<br/>
-				<Doughnut options={options} data={chart} />
+				{/* NOTE: condition to await async */}
+				{chart && <Doughnut options={options} data={chart} /> }
 			</div>
 		</>
 	);
