@@ -16,7 +16,7 @@ export default function StepFour( { handleStepFourSubmit, errorMessage } ) {
 				<br/>
 			</div>
 
-			<form onSubmit={handleStepFourSubmit} className='gap-lg'>
+			<form onSubmit={handleStepFourSubmit} className='flex-col-between flex-align-center gap-lg'>
 				<div className="daily-routine">
 					<p>Caffeine</p>
 					<svg width="17" height="21" viewBox="0 0 17 21" fill="none" xmlns="http://www.w3.org/2000/svg">
