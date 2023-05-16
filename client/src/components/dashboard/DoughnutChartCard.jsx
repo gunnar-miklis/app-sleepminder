@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
+import Spinner from '../Spinner';
 
 ChartJS.register( ArcElement, Tooltip, Legend );
 
@@ -43,6 +44,7 @@ function handleLeave( evt, item, legend ) {
 }
 
 export default function DoughnutChartCard( { moods } ) {
+	const [isLoading, setIsLoading] = useState( true );
 	const [chart, setChart] = useState();
 	useEffect( () => {
 		// deal with async behavior
@@ -75,17 +77,23 @@ export default function DoughnutChartCard( { moods } ) {
 				],
 			},
 		);
+
+		setIsLoading( false );
 	}, [moods] );
 
-	return (
-		<>
-			<h3 className="card-header">Sleep quality overview</h3>
-			<div className="card flex-col-center flex-align-center gap-sm">
-				<br/>
-				{/* NOTE: condition to await async */}
-				{chart && <Doughnut options={options} data={chart} /> }
-				<br/>
-			</div>
-		</>
-	);
+	if ( isLoading ) {
+		return <Spinner />;
+	} else {
+		return (
+			<>
+				<h3 className="card-header">Sleep quality overview</h3>
+				<div className="card flex-col-center flex-align-center gap-sm">
+					<br/>
+					{/* NOTE: condition to await async */}
+					{chart && <Doughnut options={options} data={chart} /> }
+					<br/>
+				</div>
+			</>
+		);
+	}
 }

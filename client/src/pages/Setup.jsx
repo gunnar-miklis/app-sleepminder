@@ -8,6 +8,7 @@ import StepFour from '../components/setup/StepFour';
 import ProgressBar from '../components/setup/ProgressBar';
 import apiService from '../service/api.services';
 import { AuthContext } from '../context/auth.context';
+import Spinner from '../components/Spinner';
 
 const user = {
 	username: '',
@@ -24,6 +25,7 @@ const user = {
 
 function Setup() {
 	const navigate = useNavigate();
+	const [isLoading, setIsLoading] = useState( false );
 	const { storeToken, authenticateUser } = useContext( AuthContext );
 	const [errorMessage, setErrorMessage] = useState( '' );
 
@@ -90,6 +92,7 @@ function Setup() {
 		user.caffeine = e.target[0].value;
 		user.alcohol = e.target[1].value;
 		console.log( 'user before signup :>> ', user );
+		setIsLoading( true );
 		apiService.signup( user )
 			.then( ( resSignup ) => {
 				// NOTE: after signup, also Login the user
@@ -98,48 +101,53 @@ function Setup() {
 						console.log( 'JWT token', resLogin.data.authToken );
 						storeToken( resLogin.data.authToken );
 						authenticateUser();
+						setIsLoading( false );
 						navigate( '/dashboard' );
 					} )
 					.catch( ( err ) => {
 						console.log( 'client Login err :>> ', err );
 						setErrorMessage( err.res.data.message );
 					} );
-				navigate( '/login' );
 			} )
 			.catch( ( err ) => {
 				console.log( 'err client signup :>> ', err );
 				setErrorMessage( err.response.data.message );
+				setIsLoading( false );
 			} );
 	}
 
-	return (
-		<div className="setup flex-col-between flex-align-center gap-lg">
 
-			{ currentStep === 1 &&
+	if ( isLoading ) {
+		return <Spinner />;
+	} else {
+		return (
+			<div className="setup flex-col-between flex-align-center gap-lg">
+
+				{ currentStep === 1 &&
 				<>
 					<ProgressBar currentStep={currentStep} />
 					<StepOne
 						handleStepOneSubmit={handleStepOneSubmit}
 					/>
 				</>
-			}
-			{ currentStep === 2 &&
+				}
+				{ currentStep === 2 &&
 				<>
 					<ProgressBar currentStep={currentStep} />
 					<StepTwo
 						handleStepTwoSubmit={handleStepTwoSubmit}
 					/>
 				</>
-			}
-			{ currentStep === 3 &&
+				}
+				{ currentStep === 3 &&
 				<>
 					<ProgressBar currentStep={currentStep} />
 					<StepThree
 						handleStepThreeSubmit={handleStepThreeSubmit}
 					/>
 				</>
-			}
-			{ currentStep === 4 &&
+				}
+				{ currentStep === 4 &&
 				<>
 					<ProgressBar currentStep={currentStep} />
 					<StepFour
@@ -147,11 +155,12 @@ function Setup() {
 						errorMessage={errorMessage}
 					/>
 				</>
-			}
+				}
 
-			{ errorMessage && <p>{errorMessage}</p> }
-		</div>
-	);
+				{ errorMessage && <p>{errorMessage}</p> }
+			</div>
+		);
+	}
 }
 
 export default Setup;

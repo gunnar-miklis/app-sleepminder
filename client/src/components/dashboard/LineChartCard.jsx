@@ -41,6 +41,7 @@ const cpBad = new Image();
 cpBad.src = imgBad;
 
 import imgPoor from './../../assets/moods/Poor.svg';
+import Spinner from '../Spinner';
 const cpPoor = new Image();
 cpPoor.src = imgPoor;
 
@@ -63,6 +64,9 @@ export const options = {
 				},
 				color: '#F5F2FF',
 				beginAtZero: true,
+				steps: 1,
+				stepValue: 1,
+				max: 5,
 			},
 		},
 		x: {
@@ -78,6 +82,7 @@ export const options = {
 };
 
 export default function LineChartCard( { moods } ) {
+	const [isLoading, setIsLoading] = useState( true );
 	const [chart, setChart] = useState();
 	useEffect( () => {
 		// deal with async behavior
@@ -109,18 +114,24 @@ export default function LineChartCard( { moods } ) {
 				tension: 0.5,
 			}],
 		} );
+
+		setIsLoading( false );
 	}, [moods] );
 
-	return (
-		<>
-			<div className='flex-row-between flex-align-baseline'>
-				<h3 className="card-header">Sleeping Mood</h3>
-				<p className='p-sm' style={{ 'color': '#D9FDED', 'textDecoration': 'underline' }}>Last 7 days</p>
-			</div>
-			<div className="card flex-col-center flex-align-center">
-				{/* NOTE: condition to await async */}
-				{ chart && <Line options={options} data={chart} /> }
-			</div>
-		</>
-	);
+	if ( isLoading ) {
+		return <Spinner />;
+	} else {
+		return (
+			<>
+				<div className='flex-row-between flex-align-baseline'>
+					<h3 className="card-header">Sleeping Mood</h3>
+					<p className='p-sm' style={{ 'color': '#D9FDED', 'textDecoration': 'underline' }}>Last 7 days</p>
+				</div>
+				<div className="card flex-col-center flex-align-center">
+					{/* NOTE: condition to await async */}
+					{ chart && <Line options={options} data={chart} /> }
+				</div>
+			</>
+		);
+	}
 }
