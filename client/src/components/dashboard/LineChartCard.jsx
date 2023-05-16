@@ -64,10 +64,11 @@ export const options = {
 				},
 				color: '#F5F2FF',
 				beginAtZero: true,
-				steps: 1,
-				stepValue: 1,
-				max: 5,
+				stepSize: 1,
+				padding: 10,
 			},
+			suggestedMin: 1,
+			suggestedMax: 5,
 		},
 		x: {
 			ticks: {
