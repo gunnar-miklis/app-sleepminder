@@ -32,8 +32,9 @@ router.put( '/dashboard/user/mood', ( req, res, next ) => {
 	}
 
 	UserModel.findByIdAndUpdate( userId, { $push: { moods: mood } }, { new: true } )
-		.then( ( res ) => {
+		.then( ( updatedMood ) => {
 			console.log( 'res server add mood :>> ', res );
+			res.status( 200 ).json( updatedMood );
 		} )
 		.catch( ( err ) => {
 			console.log( 'err dashboard :>> ', err );
