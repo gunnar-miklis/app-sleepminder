@@ -5,8 +5,10 @@ import StopCoffee from './reminder-elements/StopCoffee';
 import StopHeavyMeals from './reminder-elements/StopHeavyMeals';
 import StopScreens from './reminder-elements/StopScreens';
 import WakeBedTime from './reminder-elements/WakeBedTime';
+import Spinner from '../Spinner';
 
-export default function ReminderCard( { time, wakeTime, bedTime } ) {
+export default function ReminderCard( { time, wakeTime, bedTime, submitDemoValue } ) {
+	const [isLoading, setIsLoading] = useState( true );
 	// NOTE: reminder logic
 	const [reminder, setReminder] = useState( '' );
 	useEffect( () => {
@@ -36,58 +38,80 @@ export default function ReminderCard( { time, wakeTime, bedTime } ) {
 		} else {
 			setReminder( 'enjoy your day' );
 		}
+
+		setIsLoading( false );
 	}, [time] );
 
 
-	return (
-		<>
-			<h3 className="card-header">It&#39;s still time to...</h3>
-			<div className="card flex-col-between">
-				<br/>
+	if ( isLoading ) {
+		return <Spinner />;
+	} else {
+		return (
+			<>
+				<h3 className="card-header">It&#39;s still time to...</h3>
+				<div className="card flex-col-between">
+					<br/>
 
-				<div className='clock flex-col-center flex-align-center gap-sm'>
-					<h1>{time && time.toTimeString().slice( 0, 5 )}</h1>
-					<p className='p-sm'>{time && time.toDateString()}</p>
-				</div>
+					<div className='clock flex-col-center flex-align-center gap-sm'>
+						<h1>{time && time.toTimeString().slice( 0, 5 )}</h1>
+						<p className='p-sm'>{time && time.toDateString()}</p>
+					</div>
 
-				{ reminder === 'relax' &&
+					{ reminder === 'relax' &&
 					<div className='flex-col-evenly flex-align-center gap-sm'>
 						<TimeToRelax />
 						<WakeBedTime wakeTime={wakeTime} bedTime={bedTime} />
-						<h3><strong>time to relax or sleep</strong></h3>
+						<h3><strong style={{ 'color': '#bb86fc' }}>time to sleep</strong></h3>
 					</div>
-				}
-				{ reminder === 'stopScreens' &&
+					}
+					{ reminder === 'stopScreens' &&
 					<div className='flex-col-evenly flex-align-center gap-sm'>
 						<StopScreens />
 						<WakeBedTime wakeTime={wakeTime} bedTime={bedTime} />
-						<h3><strong>stop using screens</strong></h3>
+						<h3><strong style={{ 'color': '#bb86fc' }}>time to relax</strong></h3>
+						<h3>stop drinking coffee ☕</h3>
+						<h3>stop eating heavy meals 🍕</h3>
+						<h3>stop using screens</h3>
 					</div>
-				}
-				{ reminder === 'stopHeavyMeals' &&
+					}
+					{ reminder === 'stopHeavyMeals' &&
 					<div className='flex-col-evenly flex-align-center gap-sm'>
 						<StopHeavyMeals />
 						<WakeBedTime wakeTime={wakeTime} bedTime={bedTime} />
-						<h3><strong>stop eating heavy meals</strong></h3>
+						<h3><strong style={{ 'color': '#bb86fc' }}>enjoy your day</strong></h3>
+						<h3>stop drinking coffee ☕</h3>
+						<h3>stop eating heavy meals 🍕</h3>
+						<h3>there's still time to use screens 💻</h3>
 					</div>
-				}
-				{ reminder === 'stopCoffee' &&
+					}
+					{ reminder === 'stopCoffee' &&
 					<div className='flex-col-evenly flex-align-center gap-sm'>
 						<StopCoffee />
 						<WakeBedTime wakeTime={wakeTime} bedTime={bedTime} />
-						<h3><strong>stop drinking coffee</strong></h3>
+						<h3><strong style={{ 'color': '#bb86fc' }}>enjoy your day</strong></h3>
+						<h3>stop drinking coffee ☕</h3>
+						<h3>there's still time eat heavy meals 🍕</h3>
+						<h3>there's still time to use screens 💻</h3>
 					</div>
-				}
-				{ reminder === 'enjoy your day' &&
+					}
+					{ reminder === 'enjoy your day' &&
 					<div className='flex-col-evenly flex-align-center gap-sm'>
 						<StopCoffee />
 						<WakeBedTime wakeTime={wakeTime} bedTime={bedTime} />
-						<h3><strong>enjoy your day</strong></h3>
+						<h3><strong style={{ 'color': '#bb86fc' }}>enjoy your day</strong></h3>
+						<h3>there's still time to drink coffee ☕</h3>
+						<h3>there's still time eat heavy meals 🍕</h3>
+						<h3>there's still time to use screens 💻</h3>
 					</div>
-				}
+					}
 
-				<br/>
-			</div>
-		</>
-	);
+					<br/>
+					<form onSubmit={submitDemoValue} className='demo flex-row-evenly flex-align-center'>
+						<input placeholder='demonstrate time change'/>
+						<button>Demo</button>
+					</form>
+				</div>
+			</>
+		);
+	}
 }
