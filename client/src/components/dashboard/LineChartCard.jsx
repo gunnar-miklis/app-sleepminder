@@ -80,12 +80,20 @@ export const options = {
 export default function LineChartCard( { moods } ) {
 	const [chart, setChart] = useState();
 	useEffect( () => {
+		// deal with async behavior
+		if ( !moods ) return;
+		const moodsCopy = moods.slice();
+
+		// NOTE: logic to show last 7 entries ( aka days )
+		// reverse moods, then get entry 0 to seven
+		const lastSevenMoods = moodsCopy.reverse().slice( 0, 7 );
+
 		// NOTE: draw chart, when async 'moods' is ready
 		setChart( {
 			labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
 			datasets: [{
 				label: 'Mood',
-				data: moods,
+				data: lastSevenMoods,
 				pointStyle: [cpBad, cpGood, cpGood, cpGreat, cpOk, cpOk, cpPoor],
 				pointRadius: 10,
 				borderColor: '#D9FDED',

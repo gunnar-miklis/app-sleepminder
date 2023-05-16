@@ -45,14 +45,24 @@ function handleLeave( evt, item, legend ) {
 export default function DoughnutChartCard( { moods } ) {
 	const [chart, setChart] = useState();
 	useEffect( () => {
-		// NOTE: draw chart, when async 'moods' is ready
+		// deal with async behavior
+		if ( !moods ) return;
+		const moodsCopy = moods.slice();
+
+		// NOTE: logic to summarize all values
+		// make unique, and sort descanding >> [5,4,3,2,1]
+		const moodsUniqueSorted = [...new Set( moodsCopy )].sort( ( a, b ) => b-a );
+		// get the total sum for each number of [5,4,3,2,1]
+		const moodsSummarized = moodsUniqueSorted.map( ( num ) => moods.join( '' ).split( num ).length-1 );
+
+		// NOTE: draw chart
 		setChart(
 			{
 				labels: ['Great', 'Good', 'Ok', 'Bad', 'Poor'],
 				datasets: [
 					{
 						label: 'Mood',
-						data: [1, 2, 1, 2, 1],
+						data: moodsSummarized,
 						backgroundColor: [
 							'#D9FDED',
 							'#BB86FC',
