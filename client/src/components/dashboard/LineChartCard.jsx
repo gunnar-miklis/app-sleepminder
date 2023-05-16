@@ -87,6 +87,13 @@ export default function LineChartCard( { moods } ) {
 		// NOTE: logic to show last 7 entries ( aka days )
 		// reverse moods, then get entry 0 to seven
 		const lastSevenMoods = moodsCopy.reverse().slice( 0, 7 );
+		const pointStyles = lastSevenMoods.map( ( mood ) => {
+			if ( mood === 5 ) return cpGreat;
+			if ( mood === 4 ) return cpGood;
+			if ( mood === 3 ) return cpOk;
+			if ( mood === 2 ) return cpBad;
+			if ( mood === 1 ) return cpPoor;
+		} );
 
 		// NOTE: draw chart, when async 'moods' is ready
 		setChart( {
@@ -94,7 +101,7 @@ export default function LineChartCard( { moods } ) {
 			datasets: [{
 				label: 'Mood',
 				data: lastSevenMoods,
-				pointStyle: [cpBad, cpGood, cpGood, cpGreat, cpOk, cpOk, cpPoor],
+				pointStyle: pointStyles,
 				pointRadius: 10,
 				borderColor: '#D9FDED',
 				backgroundColor: '#D9FDED22',
