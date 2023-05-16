@@ -1,0 +1,18 @@
+.mood button {
+	background-color: unset;
+	border: unset;
+	color: var(--col-text);
+	padding: 0;
+	margin: 0;
+	cursor: pointer;
+	filter: opacity(80%);
+}
+.mood button:hover {
+	filter: opacity(100%);
+}
+.mood svg {
+	border-radius: 50px;
+}
+.mood svg:hover {
+	box-shadow: 0 0 6px var(--col-text);
+}
