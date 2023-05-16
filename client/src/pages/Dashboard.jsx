@@ -18,46 +18,51 @@ function Dashboard() {
 	const [wakeTime, setWakeTime] = useState();
 	const [bedTime, setBedTime] = useState();
 	const [time, setTime] = useState( new Date() );
-	const [demoTime, setDemoTime] = useState( 7 );
+
 	// update every 1 second
-	useEffect( () => {
-		setInterval( () => {
-		// DEFAULT
-		// setTime( new Date() );
+	// useEffect( () => {
+	// 	setInterval( () => {
+	// 		setTime( new Date() );
+	// 	}, 1000 );
+	// }, [] );
+	// TESTING
+	function Testing( e ) {
+		e.preventDefault();
+		const date = new Date();
+		date.setHours( Number( e.target[0].value ) );
+		setTime( date );
+	}
 
-			// TESTING
-			const date = new Date();
-			date.setHours( demoTime );
-			setTime( date );
-		}, 1000 );
-	}, [demoTime] );
-
-	useEffect( ()=> {
+	function initializeDashboard() {
 		setIsLoading( true );
 		apiService.dashboardUser()
-			.then( ( res ) => {
-				console.log( 'res.data client dashboard user  :>> ', res.data );
+			.then( ( user ) => {
+				console.log( 'user.data client dashboard user  :>> ', user.data );
+				console.log( 'user.data.moods :>> ', user.data.moods );
 
-				// COMMENT: is this how we do it? or do we get this data from context?
-				setUsername( res.data.username );
-				setWakeTime( res.data.wakeTime );
-				setBedTime( res.data.bedTime );
-				setMood( res.data.moods );
+				setUsername( user.data.username );
+				setWakeTime( user.data.wakeTime );
+				setBedTime( user.data.bedTime );
+				setMood( user.data.moods );
 				setIsLoading( false );
 			} )
 			.catch( ( err ) => {
 				console.log( err );
 				setIsLoading( false );
 			} );
+	}
+
+	useEffect( ()=> {
+		initializeDashboard();
 	}, [] );
 
 	function addMood( mood ) {
 		setIsLoading( true );
 		console.log( 'mood', mood );
 		apiService.mood( { mood } )
-			.then( ( res ) => {
-				console.log( 'res client add mood :>> ', res.data );
-				navigate( '/dashboard' );
+			.then( ( updatedMoods ) => {
+				console.log( 'updatedMoods client add mood :>> ', updatedMoods.data );
+				setMood( updatedMoods.data );
 				setIsLoading( false );
 			} )
 			.catch( ( err ) => {
@@ -71,21 +76,16 @@ function Dashboard() {
 		if ( time.getHours() > 7 ) setShowMoodCard( true );
 	}, [] );
 
-	function submitDemoValue( e ) {
-		e.preventDefault();
-		setDemoTime( e.target[0].value );
-	}
-
 	if ( isLoading ) {
 		return <Spinner />;
 	} else {
 		return (
 			<div className="dashboard flex-col-between gap-sm">
-				<UserCard username={username} moods={moods} />
-				<ReminderCard time={time} wakeTime={wakeTime} bedTime={bedTime} submitDemoValue={submitDemoValue} />
+				{ moods && <UserCard username={username} moods={moods} /> }
+				{ wakeTime && <ReminderCard time={time} wakeTime={wakeTime} bedTime={bedTime} Testing={Testing}/> }
 				{ showMoodCard && <MoodCard time={time} addMood={addMood}/> }
-				<LineChartCard moods={moods}/>
-				<DoughnutChartCard moods={moods}/>
+				{ moods && <LineChartCard moods={moods}/> }
+				{ moods && <DoughnutChartCard moods={moods}/> }
 			</div>
 		);
 	}

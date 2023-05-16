@@ -7,7 +7,7 @@ import StopScreens from './reminder-elements/StopScreens';
 import WakeBedTime from './reminder-elements/WakeBedTime';
 import Spinner from '../Spinner';
 
-export default function ReminderCard( { time, wakeTime, bedTime, submitDemoValue } ) {
+export default function ReminderCard( { time, wakeTime, bedTime, Testing } ) {
 	const [isLoading, setIsLoading] = useState( true );
 	// NOTE: reminder logic
 	const [reminder, setReminder] = useState( '' );
@@ -106,7 +106,7 @@ export default function ReminderCard( { time, wakeTime, bedTime, submitDemoValue
 					}
 
 					<br/>
-					<form onSubmit={submitDemoValue} className='demo flex-row-evenly flex-align-center'>
+					<form onSubmit={Testing} className='demo flex-row-evenly flex-align-center'>
 						<input placeholder='demonstrate time change'/>
 						<button>Demo</button>
 					</form>
