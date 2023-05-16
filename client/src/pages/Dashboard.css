@@ -11,6 +11,8 @@
 
 	border-radius: 12px;
 	background-color: var(--col-overlay);
+
+	position: relative;
 }
 .card-header {
 	padding-top: 5px;

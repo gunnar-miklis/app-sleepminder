@@ -43,6 +43,7 @@ router.post( '/signup', ( req, res, next ) => {
 			const [hh, mm] = wakeTime.split( ':' );
 			date.setHours( hh );
 			date.setMinutes( mm );
+			date.setSeconds( 0 );
 			date.setHours( date.getHours() - 8 );
 			const bedTime = date.getHours().toString().padStart( 2, '0' ) + ':' + date.getMinutes().toString().padStart( 2, '0' );
 
