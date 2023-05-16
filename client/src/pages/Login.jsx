@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import authService from '../service/auth.services';
+import apiService from '../service/api.services';
 import { AuthContext } from '../context/auth.context';
 
 export default function Login() {
@@ -17,10 +17,10 @@ export default function Login() {
 		e.preventDefault();
 		const reqBody = { username, password };
 
-		authService.login( reqBody )
+		apiService.login( reqBody )
 			.then( ( res ) => {
 				console.log( 'JWT token', res.data.authToken );
-				storeToken( res.data.authToken ); // COMMENT: token
+				storeToken( res.data.authToken );
 				authenticateUser();
 				navigate( '/dashboard' );
 			} )

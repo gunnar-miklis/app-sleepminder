@@ -1,12 +1,13 @@
 import './Setup.css';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import StepOne from '../components/setup/StepOne';
 import StepTwo from '../components/setup/StepTwo';
 import StepThree from '../components/setup/StepThree';
 import StepFour from '../components/setup/StepFour';
 import ProgressBar from '../components/setup/ProgressBar';
-import authService from '../service/auth.services';
+import apiService from '../service/api.services';
+import { AuthContext } from '../context/auth.context';
 
 const user = {
 	username: '',
@@ -23,6 +24,7 @@ const user = {
 
 function Setup() {
 	const navigate = useNavigate();
+	const { storeToken, authenticateUser } = useContext( AuthContext );
 	const [errorMessage, setErrorMessage] = useState( '' );
 
 	// navigate steps
@@ -88,8 +90,20 @@ function Setup() {
 		user.caffeine = e.target[0].value;
 		user.alcohol = e.target[1].value;
 		console.log( 'user before signup :>> ', user );
-		authService.signup( user )
-			.then( ( res ) => {
+		apiService.signup( user )
+			.then( ( resSignup ) => {
+				// NOTE: after signup, also Login the user
+				apiService.login( { username: user.username, password: user.password } )
+					.then( ( resLogin ) => {
+						console.log( 'JWT token', resLogin.data.authToken );
+						storeToken( resLogin.data.authToken );
+						authenticateUser();
+						navigate( '/dashboard' );
+					} )
+					.catch( ( err ) => {
+						console.log( 'client Login err :>> ', err );
+						setErrorMessage( err.res.data.message );
+					} );
 				navigate( '/login' );
 			} )
 			.catch( ( err ) => {

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // NOTE: structure axios requests in class with class methods
-class AuthService {
+class ApiService {
 	constructor() {
 		// connect axios
 		this.api = axios.create( {
@@ -31,8 +31,16 @@ class AuthService {
 	verify = () => {
 		return this.api.get( '/auth/verify' );
 	};
+
+	dashboardUser = () => {
+		return this.api.get( '/dashboard/user' );
+	};
+
+	mood = ( reqBody ) => {
+		return this.api.put( '/dashboard/user/mood', reqBody );
+	};
 }
 
 // initiate class
-const authService = new AuthService();
-export default authService;
+const apiService = new ApiService();
+export default apiService;

@@ -16,6 +16,7 @@ router.post( '/signup', ( req, res, next ) => {
 	if ( username === '' || password === '' ) {
 		console.log( 'provide username and password' );
 		res.status( 400 ).json( { message: 'Provide a Username and a Password' } );
+		return;
 	}
 
 	// validate password

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import authService from './../service/auth.services';
+import apiService from '../service/api.services';
 const AuthContext = React.createContext();
 
 function AuthProviderWrapper( props ) {
@@ -16,7 +16,7 @@ function AuthProviderWrapper( props ) {
 		const storedToken = localStorage.getItem( 'authToken' );
 
 		if ( storedToken ) {
-			authService.verify()
+			apiService.verify()
 				.then( ( res ) => {
 					const user = res.data;
 					setIsLoggedIn( true );
