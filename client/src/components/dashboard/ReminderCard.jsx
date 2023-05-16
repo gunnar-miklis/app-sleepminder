@@ -6,22 +6,7 @@ import StopHeavyMeals from './reminder-elements/StopHeavyMeals';
 import StopScreens from './reminder-elements/StopScreens';
 import WakeBedTime from './reminder-elements/WakeBedTime';
 
-export default function ReminderCard( { wakeTime, bedTime } ) {
-	// NOTE: current time
-	const [time, setTime] = useState( new Date() );
-	// update every 1 second
-	useEffect( () => {
-		setInterval( () => {
-			// DEFAULT
-			// setTime( new Date() );
-
-			// TESTING
-			const date = new Date();
-			date.setHours( 18 );
-			setTime( date );
-		}, 1000 );
-	}, [] );
-
+export default function ReminderCard( { time, wakeTime, bedTime } ) {
 	// NOTE: reminder logic
 	const [reminder, setReminder] = useState( '' );
 	useEffect( () => {
@@ -55,7 +40,7 @@ export default function ReminderCard( { wakeTime, bedTime } ) {
 
 
 	return (
-		<div>
+		<>
 			<h3 className="card-header">It&#39;s still time to...</h3>
 			<div className="card flex-col-between">
 				<br/>
@@ -103,6 +88,6 @@ export default function ReminderCard( { wakeTime, bedTime } ) {
 
 				<br/>
 			</div>
-		</div>
+		</>
 	);
 }

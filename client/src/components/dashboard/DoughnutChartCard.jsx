@@ -16,7 +16,7 @@ export const options = {
 				usePointStyle: true,
 				pointStyle: 'circle',
 				color: '#F5F2FF',
-				padding: 20,
+				padding: 30,
 			},
 			onHover: handleHover,
 			onLeave: handleLeave,
@@ -79,14 +79,12 @@ export default function DoughnutChartCard( { moods } ) {
 
 	return (
 		<>
-			<div className='flex-row-between flex-align-baseline'>
-				<h3 className="card-header">Sleep quality overview</h3>
-				<p className='p-sm' style={{ 'color': '#D9FDED', 'textDecoration': 'underline' }}>Last 7 days</p>
-			</div>
-			<div className="card flex-col-center flex-align-center gap-md">
+			<h3 className="card-header">Sleep quality overview</h3>
+			<div className="card flex-col-center flex-align-center gap-sm">
 				<br/>
 				{/* NOTE: condition to await async */}
 				{chart && <Doughnut options={options} data={chart} /> }
+				<br/>
 			</div>
 		</>
 	);
