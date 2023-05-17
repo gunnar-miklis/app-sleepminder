@@ -36,15 +36,15 @@ function Setup() {
 		e.preventDefault();
 		// valdidate username
 		if ( !e.target[0].value ) {
-			setErrorMessage( 'Provide a username' );
+			setErrorMessage( 'Provide a Username' );
 			return;
 		}
 		// validate password
 		if ( !e.target[1].value ) {
-			setErrorMessage( 'Provide a password' );
+			setErrorMessage( 'Provide a Password' );
 			return;
 		} else if ( !/(?=.*\d)/.test( e.target[1].value ) ) {
-			setErrorMessage( 'Password musst include a digit.' );
+			setErrorMessage( 'Password musst include a Digit.' );
 			return;
 		} else if ( !/(?=.*[a-z])/.test( e.target[1].value ) ) {
 			setErrorMessage( 'Password musst include a lowercase character.' );
@@ -158,6 +158,7 @@ function Setup() {
 				}
 
 				{ errorMessage && <p>{errorMessage}</p> }
+
 			</div>
 		);
 	}
