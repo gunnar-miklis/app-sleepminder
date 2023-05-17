@@ -1,5 +1,5 @@
 import './Setup.css';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import StepOne from '../components/setup/StepOne';
 import StepTwo from '../components/setup/StepTwo';

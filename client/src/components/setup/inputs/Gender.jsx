@@ -24,7 +24,7 @@ export default function Gender( { value } ) {
 			<select
 				onChange={handleGender}
 				className={genderIsValid}>
-				{ gender === '' ? <option value='What best describes your gender?' selected disabled>What best describes your gender?</option> : <option value='What best describes your gender?' disabled>What best describes your gender?</option> }
+				{ gender === 'What best describes your gender?' ? <option value='What best describes your gender?' selected disabled>What best describes your gender?</option> : <option value='What best describes your gender?' disabled>What best describes your gender?</option> }
 				{ gender === 'female' ? <option value='female' selected >female</option> : <option value='female'>female</option> }
 				{ gender === 'male' ? <option value='male' selected >male</option> : <option value='male'>male</option> }
 				{ gender === 'diverse' ? <option value='diverse' selected >diverse</option> : <option value='diverse'>diverse</option> }
