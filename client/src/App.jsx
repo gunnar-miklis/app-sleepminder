@@ -6,6 +6,7 @@ import Welcome from './pages/Welcome';
 import Setup from './pages/Setup';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
+import Error from './pages/Error';
 
 function App() {
 	return (
@@ -15,6 +16,7 @@ function App() {
 				<Route path="/setup" element={ <IsAnon> <Setup /> </IsAnon> } />
 				<Route path="/login" element={ <IsAnon> <Login /> </IsAnon> } />
 				<Route path="/dashboard" element={ <IsPrivate> <Dashboard /> </IsPrivate> } />
+				<Route path='*' element={ <Error /> } />
 			</Routes>
 		</main>
 	);
