@@ -120,7 +120,7 @@ export default function LineChartCard( { moods } ) {
 				pointStyle: pointStyles,
 				pointRadius: 10,
 				borderColor: '#D9FDED',
-				backgroundColor: '#D9FDED22',
+				backgroundColor: '#D9FDED33',
 				fill: true,
 			}],
 		} );

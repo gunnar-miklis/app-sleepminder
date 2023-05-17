@@ -15,11 +15,6 @@
 .card-header {
 	padding-top: 5px;
 }
-.nav-left {
-	display: flex;
-	flex-direction: row;
-	justify-content: flex-start;
-}
 .nav-right {
 	display: flex;
 	flex-direction: row;

@@ -61,7 +61,7 @@ export default function ReminderCard( { time, wakeTime, bedTime, Testing } ) {
 							<h3></h3>
 						</div>
 						<div className='reminder-graphic flex-col-between flex-align-center gap-md'>
-							<h1><strong style={{ 'color': '#bb86fc', 'font-size': '1.2em' }}>time to sleep</strong></h1>
+							<h1><strong style={{ 'color': '#bb86fc', 'fontSize': '1.2em' }}>time to sleep</strong></h1>
 							<TimeToRelax />
 							<Clock time={time} />
 							<WakeBedTime wakeTime={wakeTime} bedTime={bedTime} />
@@ -76,7 +76,7 @@ export default function ReminderCard( { time, wakeTime, bedTime, Testing } ) {
 							<h3><span className="stop">stop</span> using screens</h3>
 						</div>
 						<div className='reminder-graphic flex-col-between flex-align-center gap-md'>
-							<h1><strong style={{ 'color': '#bb86fc', 'font-size': '1.2em' }}>time to relax</strong></h1>
+							<h1><strong style={{ 'color': '#bb86fc', 'fontSize': '1.2em' }}>time to relax</strong></h1>
 							<StopScreens />
 							<Clock time={time} />
 							<WakeBedTime wakeTime={wakeTime} bedTime={bedTime} />
@@ -91,7 +91,7 @@ export default function ReminderCard( { time, wakeTime, bedTime, Testing } ) {
 							<h3>...use screens 💻</h3>
 						</div>
 						<div className='reminder-graphic flex-col-between flex-align-center gap-md'>
-							<h1><strong style={{ 'color': '#bb86fc', 'font-size': '1.2em' }}>enjoy your day</strong></h1>
+							<h1><strong style={{ 'color': '#bb86fc', 'fontSize': '1.2em' }}>enjoy your day</strong></h1>
 							<StopHeavyMeals />
 							<Clock time={time} />
 							<WakeBedTime wakeTime={wakeTime} bedTime={bedTime} />
@@ -106,7 +106,7 @@ export default function ReminderCard( { time, wakeTime, bedTime, Testing } ) {
 							<h3>...use screens 💻</h3>
 						</div>
 						<div className='reminder-graphic flex-col-between flex-align-center gap-md'>
-							<h1><strong style={{ 'color': '#bb86fc', 'font-size': '1.2em' }}>enjoy your day</strong></h1>
+							<h1><strong style={{ 'color': '#bb86fc', 'fontSize': '1.2em' }}>enjoy your day</strong></h1>
 							<StopCoffee />
 							<Clock time={time} />
 							<WakeBedTime wakeTime={wakeTime} bedTime={bedTime} />
@@ -121,7 +121,7 @@ export default function ReminderCard( { time, wakeTime, bedTime, Testing } ) {
 							<h3>...use screens 💻</h3>
 						</div>
 						<div className='reminder-graphic flex-col-between flex-align-center gap-md'>
-							<h1><strong style={{ 'color': '#D9FDED', 'font-size': '1.2em' }}>enjoy your day</strong></h1>
+							<h1><strong style={{ 'color': '#D9FDED', 'fontSize': '1.2em' }}>enjoy your day</strong></h1>
 							<EnjoyYourDay />
 							<Clock time={time} />
 							<WakeBedTime wakeTime={wakeTime} bedTime={bedTime} />
