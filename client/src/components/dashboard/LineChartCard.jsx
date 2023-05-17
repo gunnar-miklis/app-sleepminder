@@ -48,6 +48,15 @@ cpPoor.src = imgPoor;
 // NOTE: set chart.js options
 export const options = {
 	responsive: true,
+	animations: {
+		tension: {
+			duration: 1300,
+			easing: 'easeInOutSine',
+			from: 0.6,
+			to: 0.3,
+			loop: true,
+		},
+	},
 	plugins: {
 		legend: {
 			display: false,
@@ -78,6 +87,7 @@ export const options = {
 				color: '#F5F2FF',
 				beginAtZero: true,
 			},
+			reverse: true,
 		},
 	},
 };
@@ -112,7 +122,6 @@ export default function LineChartCard( { moods } ) {
 				borderColor: '#D9FDED',
 				backgroundColor: '#D9FDED22',
 				fill: true,
-				tension: 0.5,
 			}],
 		} );
 
