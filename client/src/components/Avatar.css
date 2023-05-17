@@ -1,4 +1,8 @@
 .avatar {
+	display: flex;
+	justify-content: center;
+}
+.avatar div {
 	position: relative;
 }
 .avatar svg {
