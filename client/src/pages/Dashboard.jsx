@@ -8,6 +8,7 @@ import DoughnutChartCard from '../components/dashboard/DoughnutChartCard';
 import apiService from '../service/api.services';
 import { useNavigate } from 'react-router-dom';
 import Spinner from '../components/Spinner';
+import LinkToUpdateUser from '../components/dashboard/LinkToUpdateUser';
 
 function Dashboard() {
 	const navigate = useNavigate();
@@ -35,11 +36,8 @@ function Dashboard() {
 
 	function initializeDashboard() {
 		setIsLoading( true );
-		apiService.dashboardUser()
+		apiService.dashboard()
 			.then( ( user ) => {
-				console.log( 'user.data client dashboard user  :>> ', user.data );
-				console.log( 'user.data.moods :>> ', user.data.moods );
-
 				setUsername( user.data.username );
 				setWakeTime( user.data.wakeTime );
 				setBedTime( user.data.bedTime );
@@ -47,7 +45,6 @@ function Dashboard() {
 				setIsLoading( false );
 			} )
 			.catch( ( err ) => {
-				console.log( err );
 				setIsLoading( false );
 			} );
 	}
@@ -58,15 +55,12 @@ function Dashboard() {
 
 	function addMood( mood ) {
 		setIsLoading( true );
-		console.log( 'mood', mood );
-		apiService.mood( { mood } )
+		apiService.updateMood( { mood } )
 			.then( ( updatedMoods ) => {
-				console.log( 'updatedMoods client add mood :>> ', updatedMoods.data );
 				setMood( updatedMoods.data );
 				setIsLoading( false );
 			} )
 			.catch( ( err ) => {
-				console.log( 'err client add mood :>> ', err );
 				setIsLoading( false );
 			} );
 		setShowMoodCard( false );
@@ -81,6 +75,9 @@ function Dashboard() {
 	} else {
 		return (
 			<div className="dashboard flex-col-between gap-sm">
+				<div className='nav-right'>
+					<LinkToUpdateUser />
+				</div>
 				{ moods && <UserCard username={username} moods={moods} /> }
 				{ showMoodCard && <MoodCard time={time} addMood={addMood}/> }
 				{ wakeTime && <ReminderCard time={time} wakeTime={wakeTime} bedTime={bedTime} Testing={Testing}/> }
