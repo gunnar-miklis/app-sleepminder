@@ -26,7 +26,7 @@ export default function Login() {
 			} )
 			.catch( ( err ) => {
 				console.log( 'client Login err :>> ', err );
-				setErrorMessage( err.res.data.message );
+				setErrorMessage( err.response.data.message );
 			} );
 	}
 
@@ -45,7 +45,7 @@ export default function Login() {
 					<Username />
 					<Password />
 					<button type='submit' className="btn-sm">Login</button>
-					{ errorMessage && <p>{errorMessage}</p> }
+					{ errorMessage && <p className="error">{errorMessage}</p> }
 				</form>
 			</div>
 
