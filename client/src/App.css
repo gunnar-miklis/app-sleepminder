@@ -134,3 +134,8 @@ a {
 	color: var(--col-text);
 	background-color: unset;
 }
+
+.error {
+	color: var(--col-error-delete);
+	font-weight: 500;
+}

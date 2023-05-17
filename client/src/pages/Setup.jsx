@@ -157,7 +157,7 @@ function Setup() {
 				</>
 				}
 
-				{ errorMessage && <p>{errorMessage}</p> }
+				{ errorMessage && <p className="error">{errorMessage}</p> }
 
 			</div>
 		);
