@@ -108,11 +108,16 @@ export default function Edit() {
 
 					<WakeTime value={wakeTime}/>
 
+					<br/>
+
 					<SleepTips value={sleepTips}/>
+
+					<br/>
 
 					<Caffeine value={caffeine}/>
 					<Alcohol value={alcohol}/>
 
+					<br/>
 					<br/>
 					<button type='submit' className="btn-sm">Update</button>
 				</form>
