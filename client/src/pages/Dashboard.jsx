@@ -1,5 +1,5 @@
 import './Dashboard.css';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import UserCard from '../components/dashboard/UserCard';
 import ReminderCard from '../components/dashboard/ReminderCard';
 import MoodCard from '../components/dashboard/MoodCard';
@@ -9,10 +9,13 @@ import apiService from '../service/api.services';
 import { useNavigate } from 'react-router-dom';
 import Spinner from '../components/Spinner';
 import LinkToUpdateUser from '../components/dashboard/LinkToUpdateUser';
+import { AuthContext } from '../context/auth.context';
 
 function Dashboard() {
 	const navigate = useNavigate();
 	const [isLoading, setIsLoading] = useState( true );
+	const { logOutUser } = useContext( AuthContext );
+
 	const [username, setUsername] = useState();
 	const [moods, setMood] = useState();
 	const [showMoodCard, setShowMoodCard] = useState( true );
@@ -83,6 +86,10 @@ function Dashboard() {
 				{ wakeTime && <ReminderCard time={time} wakeTime={wakeTime} bedTime={bedTime} Testing={Testing}/> }
 				{ moods && <LineChartCard moods={moods}/> }
 				{ moods && <DoughnutChartCard moods={moods}/> }
+
+				<div className='flex-row-evenly'>
+					<button className='btn-skip btn-label' onClick={()=>logOutUser()}>Logout?</button>
+				</div>
 			</div>
 		);
 	}
