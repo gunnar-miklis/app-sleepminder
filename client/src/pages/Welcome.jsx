@@ -7,7 +7,7 @@ function Welcome() {
 	const [isStarting, setIsStarting] = useState( true );
 
 	useEffect( () => {
-		setTimeout( () => setIsStarting( false ), 6000 );
+		setTimeout( () => setIsStarting( false ), 5000 );
 	}, [] );
 
 	if ( isStarting ) {
