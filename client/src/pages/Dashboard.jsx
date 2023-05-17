@@ -82,8 +82,8 @@ function Dashboard() {
 		return (
 			<div className="dashboard flex-col-between gap-sm">
 				{ moods && <UserCard username={username} moods={moods} /> }
-				{ wakeTime && <ReminderCard time={time} wakeTime={wakeTime} bedTime={bedTime} Testing={Testing}/> }
 				{ showMoodCard && <MoodCard time={time} addMood={addMood}/> }
+				{ wakeTime && <ReminderCard time={time} wakeTime={wakeTime} bedTime={bedTime} Testing={Testing}/> }
 				{ moods && <LineChartCard moods={moods}/> }
 				{ moods && <DoughnutChartCard moods={moods}/> }
 			</div>
