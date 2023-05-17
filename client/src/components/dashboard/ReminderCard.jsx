@@ -6,6 +6,8 @@ import StopHeavyMeals from './reminder-elements/StopHeavyMeals';
 import StopScreens from './reminder-elements/StopScreens';
 import WakeBedTime from './reminder-elements/WakeBedTime';
 import Spinner from '../Spinner';
+import Clock from './reminder-elements/Clock';
+import EnjoyYourDay from './reminder-elements/EnjoyYourDay';
 
 export default function ReminderCard( { time, wakeTime, bedTime, Testing } ) {
 	const [isLoading, setIsLoading] = useState( true );
@@ -50,58 +52,80 @@ export default function ReminderCard( { time, wakeTime, bedTime, Testing } ) {
 			<>
 				<h3 className="card-header">It&#39;s still time to...</h3>
 				<div className="card flex-col-between">
-					<br/>
-
-					<div className='clock flex-col-center flex-align-center gap-sm'>
-						<h1>{time && time.toTimeString().slice( 0, 5 )}</h1>
-						<p className='p-sm'>{time && time.toDateString()}</p>
-					</div>
 
 					{ reminder === 'relax' &&
 					<div className='flex-col-evenly flex-align-center gap-sm'>
-						<TimeToRelax />
-						<WakeBedTime wakeTime={wakeTime} bedTime={bedTime} />
-						<h3><strong style={{ 'color': '#bb86fc' }}>time to sleep</strong></h3>
+						<div>
+							<h3></h3>
+							<h3></h3>
+							<h3></h3>
+						</div>
+						<div className='reminder-graphic flex-col-between flex-align-center gap-md'>
+							<h1><strong style={{ 'color': '#bb86fc', 'font-size': '1.2em' }}>time to sleep</strong></h1>
+							<TimeToRelax />
+							<Clock time={time} />
+							<WakeBedTime wakeTime={wakeTime} bedTime={bedTime} />
+						</div>
 					</div>
 					}
 					{ reminder === 'stopScreens' &&
-					<div className='flex-col-evenly flex-align-center gap-sm'>
-						<StopScreens />
-						<WakeBedTime wakeTime={wakeTime} bedTime={bedTime} />
-						<h3><strong style={{ 'color': '#bb86fc' }}>time to relax</strong></h3>
-						<h3>stop drinking coffee ☕</h3>
-						<h3>stop eating heavy meals 🍕</h3>
-						<h3>stop using screens</h3>
+					<div className='flex-col-between gap-lg'>
+						<div>
+							<h3><span className="stop">stop</span> drinking coffee ☕</h3>
+							<h3><span className="stop">stop</span> eating heavy meals 🍕</h3>
+							<h3><span className="stop">stop</span> using screens</h3>
+						</div>
+						<div className='reminder-graphic flex-col-between flex-align-center gap-md'>
+							<h1><strong style={{ 'color': '#bb86fc', 'font-size': '1.2em' }}>time to relax</strong></h1>
+							<StopScreens />
+							<Clock time={time} />
+							<WakeBedTime wakeTime={wakeTime} bedTime={bedTime} />
+						</div>
 					</div>
 					}
 					{ reminder === 'stopHeavyMeals' &&
-					<div className='flex-col-evenly flex-align-center gap-sm'>
-						<StopHeavyMeals />
-						<WakeBedTime wakeTime={wakeTime} bedTime={bedTime} />
-						<h3><strong style={{ 'color': '#bb86fc' }}>enjoy your day</strong></h3>
-						<h3>stop drinking coffee ☕</h3>
-						<h3>stop eating heavy meals 🍕</h3>
-						<h3>there's still time to use screens 💻</h3>
+					<div className='flex-col-between gap-lg'>
+						<div>
+							<h3><span className="stop">stop</span> drinking coffee ☕</h3>
+							<h3><span className="stop">stop</span> eating heavy meals 🍕</h3>
+							<h3>...use screens 💻</h3>
+						</div>
+						<div className='reminder-graphic flex-col-between flex-align-center gap-md'>
+							<h1><strong style={{ 'color': '#bb86fc', 'font-size': '1.2em' }}>enjoy your day</strong></h1>
+							<StopHeavyMeals />
+							<Clock time={time} />
+							<WakeBedTime wakeTime={wakeTime} bedTime={bedTime} />
+						</div>
 					</div>
 					}
 					{ reminder === 'stopCoffee' &&
-					<div className='flex-col-evenly flex-align-center gap-sm'>
-						<StopCoffee />
-						<WakeBedTime wakeTime={wakeTime} bedTime={bedTime} />
-						<h3><strong style={{ 'color': '#bb86fc' }}>enjoy your day</strong></h3>
-						<h3>stop drinking coffee ☕</h3>
-						<h3>there's still time eat heavy meals 🍕</h3>
-						<h3>there's still time to use screens 💻</h3>
+					<div className='flex-col-between gap-lg'>
+						<div>
+							<h3><span className="stop">stop</span> drinking coffee ☕</h3>
+							<h3>...eat heavy meals 🍕</h3>
+							<h3>...use screens 💻</h3>
+						</div>
+						<div className='reminder-graphic flex-col-between flex-align-center gap-md'>
+							<h1><strong style={{ 'color': '#bb86fc', 'font-size': '1.2em' }}>enjoy your day</strong></h1>
+							<StopCoffee />
+							<Clock time={time} />
+							<WakeBedTime wakeTime={wakeTime} bedTime={bedTime} />
+						</div>
 					</div>
 					}
 					{ reminder === 'enjoy your day' &&
-					<div className='flex-col-evenly flex-align-center gap-sm'>
-						<StopCoffee />
-						<WakeBedTime wakeTime={wakeTime} bedTime={bedTime} />
-						<h3><strong style={{ 'color': '#bb86fc' }}>enjoy your day</strong></h3>
-						<h3>there's still time to drink coffee ☕</h3>
-						<h3>there's still time eat heavy meals 🍕</h3>
-						<h3>there's still time to use screens 💻</h3>
+					<div className='flex-col-between gap-lg'>
+						<div>
+							<h3>...drink coffee ☕</h3>
+							<h3>...eat heavy meals 🍕</h3>
+							<h3>...use screens 💻</h3>
+						</div>
+						<div className='reminder-graphic flex-col-between flex-align-center gap-md'>
+							<h1><strong style={{ 'color': '#D9FDED', 'font-size': '1.2em' }}>enjoy your day</strong></h1>
+							<EnjoyYourDay />
+							<Clock time={time} />
+							<WakeBedTime wakeTime={wakeTime} bedTime={bedTime} />
+						</div>
 					</div>
 					}
 

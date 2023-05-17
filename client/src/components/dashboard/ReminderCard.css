@@ -1,14 +1,10 @@
-.clock {
-	position: absolute;
-	top: 180px;
-	left: 50%;
-	transform: translate(-50%, -50%);
+.stop {
+	color: var(--col-error-delete);
+	font-weight: 500;
 }
-.clock h1 {
-	font-size: 2.5em;
-	font-weight: 300;
+.reminder-graphic {
+	position: relative;
 }
-
 .demo {
 	font-weight: 400;
 	font-size: 0.8rem;
