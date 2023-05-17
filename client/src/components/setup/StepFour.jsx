@@ -7,7 +7,7 @@ export default function StepFour( { handleStepFourSubmit, errorMessage } ) {
 
 	return (
 		<>
-			{ errorMessage && <p>{errorMessage}</p> }
+			{ errorMessage && <p className="error">{errorMessage}</p> }
 
 			<div>
 				<br/>
