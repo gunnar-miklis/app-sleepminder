@@ -8,14 +8,12 @@ const { jwtExpired } = require( '../middleware/jwt-expired.middleware' );
 
 // NOTE: Signup User
 router.post( '/signup', ( req, res, next ) => {
-	console.log( 'req.body server signup :>> ', req.body );
 	// recieve data on submit
 	const { username, password, birth, gender, weight, height, wakeTime, sleepTips, caffeine, alcohol } = req.body;
 
 	// NOTE: Validations
 	// check if username and password ist provided
 	if ( username === '' || password === '' ) {
-		console.log( 'server provide username and password' );
 		res.status( 400 ).json( { message: 'Provide a Username and a Password' } );
 		return;
 	}
@@ -23,7 +21,6 @@ router.post( '/signup', ( req, res, next ) => {
 	// validate password
 	const passwordRegex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
 	if ( !passwordRegex.test( password ) ) {
-		console.log( 'server pw requirements not fullfilled' );
 		res.status( 400 ).json( { message: 'Password musst have: lowercase, uppercase, at least 6 characters' } );
 		return;
 	}
@@ -32,7 +29,6 @@ router.post( '/signup', ( req, res, next ) => {
 	UserModel.findOne( { username } )
 		.then( ( foundUser ) => {
 			if ( foundUser ) {
-				console.log( 'server username already taken' );
 				res.status( 400 ).json( { message: 'Username already taken' } );
 				return;
 			}
@@ -49,40 +45,35 @@ router.post( '/signup', ( req, res, next ) => {
 			date.setHours( date.getHours() - 8 );
 			const bedTime = date.getHours().toString().padStart( 2, '0' ) + ':' + date.getMinutes().toString().padStart( 2, '0' );
 
-			const user = { username, password: hash, birth, gender, weight, height, wakeTime, bedTime, sleepTips, caffeine, alcohol, moods: [] };
+			const user = { username, password: hash, birth: new Date( birth ), gender, weight, height, wakeTime, bedTime, sleepTips, caffeine, alcohol, moods: [] };
 
 			// NOTE: create new User
 			return UserModel.create( user );
 		} )
 		.then( ( createdUser ) => {
-			console.log( 'createdUser server signup :>> ', createdUser );
-
 			res.status( 201 ).json( { user: createdUser } );
 		} )
 		.catch( ( err ) => {
-			console.log( 'err server signup :>> ', err );
 			res.status( 500 ).json( { message: 'Internal Server Error' } );
 		} );
 } );
 
 // NOTE: login
 router.post( '/login', ( req, res, next ) => {
-	console.log( 'req.body server login :>> ', req.body );
 	const { username, password } = req.body;
 
 	// NOTE: Validations
 	// check if username and password ist provided
 	if ( username === '' || password === '' ) {
-		console.log( 'server provide username and password' );
 		res.status( 400 ).json( { message: 'Provide Username and Password.' } );
+		return;
 	}
 
 	UserModel.findOne( { username: username } )
 		.then( ( foundUser ) => {
 			// check if user is in database
 			if ( !foundUser ) {
-				console.log( 'server user not found in db' );
-				res.status( 400 ).json( { message: 'Username not found.' } );
+				res.status( 400 ).json( { message: 'Wrong Credentials' } );
 				return;
 			}
 
@@ -94,7 +85,6 @@ router.post( '/login', ( req, res, next ) => {
 				username: foundUser.username,
 			};
 			if ( passwordIsCorrect ) {
-				console.log( 'server password is correct ' );
 				// NOTE: create token
 				const payload = user;
 				const authToken = jwt.sign(
@@ -107,10 +97,11 @@ router.post( '/login', ( req, res, next ) => {
 				);
 				// pass created token to frontend
 				res.status( 200 ).json( { authToken } );
+			} else {
+				res.status( 400 ).json( { message: 'Wrong Credentials' } );
 			}
 		} )
 		.catch( ( err ) => {
-			console.log( 'err server login :>> ', err );
 			res.status( 500 ).json( { message: 'Internal Server Error' } );
 		} );
 } );

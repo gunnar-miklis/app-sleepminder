@@ -1,5 +1,5 @@
 import './Setup.css';
-import { useContext, useEffect, useState } from 'react';
+import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import StepOne from '../components/setup/StepOne';
 import StepTwo from '../components/setup/StepTwo';
@@ -69,9 +69,8 @@ function Setup() {
 		setCurrentStep( currentStep + 1 );
 		setErrorMessage( '' );
 	}
-	console.log( 'user.wakeTime object :>> ', user.wakeTime );
+
 	function handleStepTwoSubmit( e ) {
-		console.log( 'e.target[0].value :>> ', e.target[0].value );
 		user.wakeTime = e.target[0].value;
 		setCurrentStep( currentStep + 1 );
 	}
@@ -91,26 +90,23 @@ function Setup() {
 		e.preventDefault();
 		user.caffeine = e.target[0].value;
 		user.alcohol = e.target[1].value;
-		console.log( 'user before signup :>> ', user );
+
 		setIsLoading( true );
 		apiService.signup( user )
 			.then( ( resSignup ) => {
 				// NOTE: after signup, also Login the user
 				apiService.login( { username: user.username, password: user.password } )
 					.then( ( resLogin ) => {
-						console.log( 'JWT token', resLogin.data.authToken );
 						storeToken( resLogin.data.authToken );
 						authenticateUser();
 						setIsLoading( false );
 						navigate( '/dashboard' );
 					} )
 					.catch( ( err ) => {
-						console.log( 'client Login err :>> ', err );
 						setErrorMessage( err.res.data.message );
 					} );
 			} )
 			.catch( ( err ) => {
-				console.log( 'err client signup :>> ', err );
 				setErrorMessage( err.response.data.message );
 				setIsLoading( false );
 			} );
