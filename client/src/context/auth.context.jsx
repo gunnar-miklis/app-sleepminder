@@ -6,7 +6,7 @@ function AuthProviderWrapper( props ) {
 	const [isLoggedIn, setIsLoggedIn] = useState( false );
 	const [user, setUser] = useState( null );
 
-	const [isLoading, setIsLoading] = useState( false );
+	const [isLoading, setIsLoading] = useState( true );
 
 	function storeToken( token ) {
 		localStorage.setItem( 'authToken', token );
@@ -23,9 +23,7 @@ function AuthProviderWrapper( props ) {
 					setUser( user );
 				} )
 				.catch( ( err ) => {
-					console.log( 'err client verify token expired :>> ', err.response.data.error );
 					if ( err.response.data.error === 'token expired' ) {
-						console.log( 'we removing this token' );
 						removeToken();
 					}
 					setIsLoggedIn( false );
