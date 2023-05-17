@@ -82,7 +82,7 @@ router.post( '/login', ( req, res, next ) => {
 			// check if user is in database
 			if ( !foundUser ) {
 				console.log( 'server user not found in db' );
-				res.status( 400 ).json( { message: 'User not found.' } );
+				res.status( 400 ).json( { message: 'Username not found.' } );
 				return;
 			}
 
