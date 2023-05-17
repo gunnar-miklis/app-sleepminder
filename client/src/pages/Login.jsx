@@ -12,20 +12,18 @@ export default function Login() {
 
 	function handleLogin( e ) {
 		e.preventDefault();
-		console.log( 'e :>> ', e );
+
 		const username = e.target[0].value;
 		const password = e.target[1].value;
 		const reqBody = { username, password };
 
 		apiService.login( reqBody )
 			.then( ( res ) => {
-				console.log( 'JWT token', res.data.authToken );
 				storeToken( res.data.authToken );
 				authenticateUser();
 				navigate( '/dashboard' );
 			} )
 			.catch( ( err ) => {
-				console.log( 'client Login err :>> ', err );
 				setErrorMessage( err.response.data.message );
 			} );
 	}
@@ -42,10 +40,16 @@ export default function Login() {
 				<h1>Login</h1>
 
 				<form onSubmit={handleLogin} className='flex-col-between flex-align-center gap-md'>
+
 					<Username />
+
 					<Password />
-					<button type='submit' className="btn-sm">Login</button>
+
+					<br/>
+
 					{ errorMessage && <p className="error">{errorMessage}</p> }
+
+					<button type='submit' className="btn-sm">Login</button>
 				</form>
 			</div>
 
