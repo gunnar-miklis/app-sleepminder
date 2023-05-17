@@ -44,6 +44,10 @@ class ApiService {
 		return this.api.put( '/user', reqBody );
 	};
 
+	deleteUser = () => {
+		return this.api.delete( '/user' );
+	};
+
 	updateMood = ( reqBody ) => {
 		return this.api.put( '/user/mood/update', reqBody );
 	};

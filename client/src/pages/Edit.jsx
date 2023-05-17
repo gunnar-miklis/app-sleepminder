@@ -9,14 +9,18 @@ import SleepTips from '../components/setup/inputs/SleepTips';
 import Caffeine from '../components/setup/inputs/Caffeine';
 import Alcohol from '../components/setup/inputs/Alcohol';
 import apiService from '../service/api.services';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Spinner from '../components/Spinner';
 import { useNavigate } from 'react-router-dom';
 import LinkToDashboard from '../components/dashboard/LinkToDashboard';
+import { AuthContext } from '../context/auth.context';
 
 export default function Edit() {
-	const [isLoading, setIsLoading] = useState( true );
 	const navigate = useNavigate();
+	const [isLoading, setIsLoading] = useState( true );
+	const { logOutUser } = useContext( AuthContext );
+	const [showElement, setShowElement] = useState( true );
+	const [errorMessage, setErrorMessage] = useState( '' );
 
 	const [username, setUsername] = useState();
 	const [birth, setBirth] = useState();
@@ -81,12 +85,37 @@ export default function Edit() {
 		return;
 	}
 
+	const [showModal, setShowModal] = useState( 'none' );
+	function handleDeleteUser() {
+		setIsLoading( true );
+		apiService.deleteUser()
+			.then( ( res )=>{
+				setIsLoading( false );
+				setShowElement( false );
+				setErrorMessage( res.data.message );
+				setTimeout( () => {
+					setShowElement( true );
+					logOutUser();
+					navigate( '/welcome' );
+				}, 5000 );
+			} ).catch( ( err ) => {
+				setIsLoading( false );
+			} );
+	}
+
 	if ( isLoading ) {
 		return <Spinner />;
 	} else {
 		return (
 			<div className='setup edit flex-col-evenly gap-lg'>
-				<div className='nav-left'>
+				<div className='modal-delete-confimation gap-md' style={{ 'display': showModal }}>
+					<h1>Really want to<br/>delete your profile?</h1>
+					{ errorMessage && <p style={{ 'maxWidth': '60%' }}><strong>{errorMessage}</strong></p> }
+					<button className='btn-sm' onClick={handleDeleteUser} style={ showElement ? { 'display': 'block' } : { 'display': 'none' }}>YES</button>
+					<button className='btn-skip' onClick={()=>setShowModal( 'none' )} style={ showElement ? { 'display': 'block' } : { 'display': 'none' }}>don&#39;t delete</button>
+				</div>
+
+				<div className='flex-row-between flex-align-center'>
 					<LinkToDashboard />
 				</div>
 
@@ -119,8 +148,13 @@ export default function Edit() {
 
 					<br/>
 					<br/>
-					<button type='submit' className="btn-sm">Update</button>
+					<button type='submit' className="btn-sm">Update Profile</button>
 				</form>
+
+				<div>
+					<br/>
+					<button className='btn-skip btn-label' onClick={()=>setShowModal( 'flex' )}>Delete Profile</button>
+				</div>
 
 			</div>
 		);

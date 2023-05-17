@@ -37,7 +37,18 @@ router.put( '/user', ( req, res, next ) => {
 
 	UserModel.findByIdAndUpdate( userId, { birth, gender, weight, height, wakeTime, sleepTips, caffeine, alcohol }, { new: true } )
 		.then( () => {
-			res.status( 200 );
+			res.status( 200 ).json( { message: 'Profile successfully updated.' } );
+		} )
+		.catch( ( err ) => {
+			res.status( 500 ).json( { message: 'Internal Server Error' } );
+		} );
+} );
+
+router.delete( '/user', ( req, res, next ) => {
+	const userId = req.payload._id;
+	UserModel.findByIdAndDelete( userId )
+		.then( () => {
+			res.status( 200 ).json( { message: 'Profile successfully deleted. You\'ll be redirected shortly.' } );
 		} )
 		.catch( ( err ) => {
 			res.status( 500 ).json( { message: 'Internal Server Error' } );
