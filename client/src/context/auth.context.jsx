@@ -14,7 +14,6 @@ function AuthProviderWrapper( props ) {
 
 	function authenticateUser() {
 		const storedToken = localStorage.getItem( 'authToken' );
-
 		if ( storedToken ) {
 			apiService.verify()
 				.then( ( res ) => {
@@ -24,6 +23,11 @@ function AuthProviderWrapper( props ) {
 					setUser( user );
 				} )
 				.catch( ( err ) => {
+					console.log( 'err client verify token expired :>> ', err.response.data.error );
+					if ( err.response.data.error === 'token expired' ) {
+						console.log( 'we removing this token' );
+						removeToken();
+					}
 					setIsLoggedIn( false );
 					setIsLoading( false );
 					setUser( null );

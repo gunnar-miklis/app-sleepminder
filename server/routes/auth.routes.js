@@ -4,6 +4,7 @@ const bcrypt = require( 'bcryptjs' );
 const saltRounds = 10;
 const jwt = require( 'jsonwebtoken' );
 const { isAuthenticated } = require( '../middleware/jwt.middleware' );
+const { jwtExpired } = require( '../middleware/jwt-expired.middleware' );
 
 // NOTE: Signup User
 router.post( '/signup', ( req, res, next ) => {
@@ -14,7 +15,7 @@ router.post( '/signup', ( req, res, next ) => {
 	// NOTE: Validations
 	// check if username and password ist provided
 	if ( username === '' || password === '' ) {
-		console.log( 'provide username and password' );
+		console.log( 'server provide username and password' );
 		res.status( 400 ).json( { message: 'Provide a Username and a Password' } );
 		return;
 	}
@@ -22,7 +23,7 @@ router.post( '/signup', ( req, res, next ) => {
 	// validate password
 	const passwordRegex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
 	if ( !passwordRegex.test( password ) ) {
-		console.log( 'pw requirements not fullfilled' );
+		console.log( 'server pw requirements not fullfilled' );
 		res.status( 400 ).json( { message: 'Password musst have: lowercase, uppercase, at least 6 characters' } );
 		return;
 	}
@@ -31,7 +32,7 @@ router.post( '/signup', ( req, res, next ) => {
 	UserModel.findOne( { username } )
 		.then( ( foundUser ) => {
 			if ( foundUser ) {
-				console.log( 'username already taken' );
+				console.log( 'server username already taken' );
 				res.status( 400 ).json( { message: 'Username already taken' } );
 				return;
 			}
@@ -54,7 +55,7 @@ router.post( '/signup', ( req, res, next ) => {
 			return UserModel.create( user );
 		} )
 		.then( ( createdUser ) => {
-			console.log( 'createdUser :>> ', createdUser );
+			console.log( 'createdUser server signup :>> ', createdUser );
 
 			res.status( 201 ).json( { user: createdUser } );
 		} )
@@ -66,13 +67,13 @@ router.post( '/signup', ( req, res, next ) => {
 
 // NOTE: login
 router.post( '/login', ( req, res, next ) => {
-	console.log( 'req.body :>> ', req.body );
+	console.log( 'req.body server login :>> ', req.body );
 	const { username, password } = req.body;
 
 	// NOTE: Validations
 	// check if username and password ist provided
 	if ( username === '' || password === '' ) {
-		console.log( 'provide username and password' );
+		console.log( 'server provide username and password' );
 		res.status( 400 ).json( { message: 'Provide Username and Password.' } );
 	}
 
@@ -80,7 +81,7 @@ router.post( '/login', ( req, res, next ) => {
 		.then( ( foundUser ) => {
 			// check if user is in database
 			if ( !foundUser ) {
-				console.log( 'user not found in db' );
+				console.log( 'server user not found in db' );
 				res.status( 400 ).json( { message: 'User not found.' } );
 				return;
 			}
@@ -93,13 +94,16 @@ router.post( '/login', ( req, res, next ) => {
 				username: foundUser.username,
 			};
 			if ( passwordIsCorrect ) {
-				console.log( 'password is correct ' );
+				console.log( 'server password is correct ' );
 				// NOTE: create token
 				const payload = user;
 				const authToken = jwt.sign(
 					payload,
 					process.env.TOKEN_SECRET,
-					{ algorithm: 'HS256', expiresIn: '6h' },
+					{
+						algorithm: 'HS256',
+						expiresIn: '1h',
+					},
 				);
 				// pass created token to frontend
 				res.status( 200 ).json( { authToken } );
@@ -111,9 +115,8 @@ router.post( '/login', ( req, res, next ) => {
 		} );
 } );
 
-// verify user / token on protected frontend routes
-router.get( '/verify', isAuthenticated, ( req, res, next ) => {
-	console.log( 'verify: req.payload :>> ', req.payload );
+// NOTE: verify user / token on protected frontend routes
+router.get( '/verify', isAuthenticated, jwtExpired, ( req, res, next ) => {
 	res.status( 200 ).json( req.payload );
 } );
 
