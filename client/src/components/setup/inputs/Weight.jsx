@@ -1,9 +1,14 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-export default function Weight() {
-	// weight
+export default function Weight( { value } ) {
 	const [weight, setWeight] = useState();
 	const [weightIsValid, setWeightIsValid] = useState();
+
+	useEffect( ()=> {
+		if ( !value ) return;
+		setWeight( value );
+	}, [value] );
+
 	function handleWeight( e ) {
 		if ( e.target.value < 0 ) setWeight( false );
 		else {
@@ -17,11 +22,14 @@ export default function Weight() {
 		}
 	}
 	return (
-		<input
-			type="number"
-			value={weight}
-			onChange={handleWeight}
-			placeholder="Weight (kg)"
-			className={weightIsValid} />
+		<div className='input-wrapper'>
+			<p className='p-input'>weight</p>
+			<input
+				type="number"
+				value={weight}
+				onChange={handleWeight}
+				placeholder="Weight (kg)"
+				className={weightIsValid} />
+		</div>
 	);
 }

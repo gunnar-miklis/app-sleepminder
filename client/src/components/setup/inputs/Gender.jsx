@@ -1,12 +1,16 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-export default function Gender() {
-	// gender
-	const genders = ['What best describes your gender?', 'female', 'male', 'diverse'];
-	const [gender, setGender] = useState( genders[0] );
+export default function Gender( { value } ) {
+	const [gender, setGender] = useState( 'What best describes your gender?' );
 	const [genderIsValid, setGenderIsValid] = useState();
+
+	useEffect( ()=> {
+		if ( !value ) return;
+		setGender( value );
+	}, [value] );
+
 	function handleGender( e ) {
-		if ( e.target.value && e.target.value !== genders[0] ) {
+		if ( e.target.value && e.target.value !== 'What best describes your gender?' ) {
 			setGender( e.target.value );
 			setGenderIsValid( 'valid' );
 		} else {
@@ -15,17 +19,16 @@ export default function Gender() {
 		}
 	}
 	return (
-		<select
-			onChange={handleGender}
-			className={genderIsValid}>
-			{
-				genders.map( ( value, i ) => {
-					if ( i === 0 ) {
-						return <option value={value} key={value} disabled selected>{value}</option>;
-					}
-					return <option value={value} key={value}>{value}</option>;
-				} )
-			}
-		</select>
+		<div className='input-wrapper'>
+			<p className='p-input'>gender</p>
+			<select
+				onChange={handleGender}
+				className={genderIsValid}>
+				{ gender === '' ? <option value='What best describes your gender?' selected disabled>What best describes your gender?</option> : <option value='What best describes your gender?' disabled>What best describes your gender?</option> }
+				{ gender === 'female' ? <option value='female' selected >female</option> : <option value='female'>female</option> }
+				{ gender === 'male' ? <option value='male' selected >male</option> : <option value='male'>male</option> }
+				{ gender === 'diverse' ? <option value='diverse' selected >diverse</option> : <option value='diverse'>diverse</option> }
+			</select>
+		</div>
 	);
 }

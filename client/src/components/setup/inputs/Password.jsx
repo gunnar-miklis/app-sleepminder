@@ -1,7 +1,6 @@
 import { useState } from 'react';
 
 export default function Password() {
-	// password
 	const [password, setPassword] = useState();
 	const [passwordIsValid, setPasswordIsValid] = useState();
 	function handlePassword( e ) {
@@ -35,7 +34,8 @@ export default function Password() {
 	// 	setPwLength( 'checked' );
 	// }
 	return (
-		<>
+		<div className='input-wrapper'>
+			<p className='p-input'>password</p>
 			<input
 				type="password"
 				value={password}
@@ -48,6 +48,6 @@ export default function Password() {
 				<li className={pwDigit}>Number123</li>
 				<li className={pwLength}>Length: 6+</li>
 			</ul> */}
-		</>
+		</div>
 	);
 }

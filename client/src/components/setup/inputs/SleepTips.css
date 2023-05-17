@@ -1,3 +1,6 @@
+.sleep-tips {
+	width: 100%;
+}
 .sleep-tips div {
 	width: 100%;
 	max-width: 400px;
@@ -23,7 +26,7 @@
   	width: 0;
 	display: none;
 }
-form.sleep-tips svg {
+.sleep-tips svg {
 	display: none;
 	opacity: 0;
 }

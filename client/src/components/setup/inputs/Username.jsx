@@ -1,9 +1,14 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-export default function Username() {
-	// username
+export default function Username( { value } ) {
 	const [username, setUsername] = useState();
 	const [nameIsValid, setNameIsValid] = useState();
+
+	useEffect( ()=> {
+		if ( !value ) return;
+		setUsername( value );
+	}, [value] );
+
 	function handleUsername( e ) {
 		if ( e.target.value ) {
 			setUsername( e.target.value );
@@ -14,12 +19,15 @@ export default function Username() {
 		}
 	}
 	return (
-		<input
-			type="text"
-			value={username}
-			onChange={handleUsername}
-			placeholder="Username"
-			className={nameIsValid}
-		/>
+		<div className='input-wrapper'>
+			<p className='p-input'>username</p>
+			<input
+				type="text"
+				value={username}
+				onChange={handleUsername}
+				placeholder="Username"
+				className={nameIsValid}
+			/>
+		</div>
 	);
 }

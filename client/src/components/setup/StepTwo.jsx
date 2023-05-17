@@ -1,20 +1,7 @@
 import './StepTwo.css';
-import { useState } from 'react';
+import WakeTime from './inputs/WakeTime';
 
 export default function StepTwo( { handleStepTwoSubmit } ) {
-	const [wakeTime, setWakeTime] = useState( '' );
-	const [wakeTimeIsValid, setWakeTimeIsValid] = useState();
-
-	function handleWakeTime( e ) {
-		if ( e.target.value ) {
-			setWakeTime( e.target.value );
-			setWakeTimeIsValid( 'valid' );
-		} else {
-			setWakeTime();
-			setWakeTimeIsValid();
-		}
-	}
-
 	return (
 		<div className='flex-col-between flex-align-center gap-md'>
 
@@ -31,19 +18,11 @@ export default function StepTwo( { handleStepTwoSubmit } ) {
 
 			<div>
 				<p>or set your wakeup time manually.</p>
-				<form onSubmit={handleStepTwoSubmit} className='flex-col-between flex-align-center gap-lg'>
-					<label>
-						<input
-							type="time"
-							value={wakeTime}
-							onChange={handleWakeTime}
-							placeholder="wake up time"
-							className={wakeTimeIsValid}
-						/>
-					</label>
+				<form onSubmit={handleStepTwoSubmit} className='flex-col-between flex-align-center gap-md'>
+
+					<WakeTime />
 
 					<br/>
-
 					<button className="btn-sm">Next</button>
 				</form>
 			</div>

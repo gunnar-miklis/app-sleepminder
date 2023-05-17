@@ -24,6 +24,8 @@
 
 	font-weight: 400;
 	color: var(--col-graph-light);
+
+	transition: var(--transition);
 }
 /* Custom select arrow */
 .setup select {
@@ -52,4 +54,22 @@
 .setup input:invalid {
 	color: var(--col-error-delete);
 	border: 2px solid var(--col-error-delete);
+}
+
+.setup .input-wrapper {
+	width: 100%;
+	position: relative;
+}
+.setup .input-wrapper .p-input {
+	position: absolute;
+	top: -8px;
+	left: 8px;
+
+	margin: 0;
+	padding: 0 8px;
+
+	font-size: 0.7rem;
+	line-height: normal;
+	color: var(--col-graph-light);
+	background-color: var(--col-primary);
 }

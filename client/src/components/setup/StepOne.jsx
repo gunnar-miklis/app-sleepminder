@@ -27,6 +27,7 @@ export default function StepOne( { handleStepOneSubmit } ) {
 
 				<Height />
 
+				<br/>
 				<button type='submit' className="btn-sm">Next</button>
 			</form>
 

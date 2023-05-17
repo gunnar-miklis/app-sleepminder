@@ -32,12 +32,20 @@ class ApiService {
 		return this.api.get( '/auth/verify' );
 	};
 
-	dashboardUser = () => {
-		return this.api.get( '/dashboard/user' );
+	dashboard = () => {
+		return this.api.get( '/dashboard' );
 	};
 
-	mood = ( reqBody ) => {
-		return this.api.put( '/dashboard/user/mood', reqBody );
+	user = () => {
+		return this.api.get( '/user' );
+	};
+
+	updateUser = ( reqBody ) => {
+		return this.api.put( '/user', reqBody );
+	};
+
+	updateMood = ( reqBody ) => {
+		return this.api.put( '/user/mood/update', reqBody );
 	};
 }
 

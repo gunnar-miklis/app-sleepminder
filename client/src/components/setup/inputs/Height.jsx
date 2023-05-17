@@ -1,9 +1,14 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-export default function Height() {
-	// height
+export default function Height( { value } ) {
 	const [height, setHeight] = useState();
 	const [heightIsValid, setHeightIsValid] = useState();
+
+	useEffect( ()=> {
+		if ( !value ) return;
+		setHeight( value );
+	}, [value] );
+
 	function handleHeight( e ) {
 		if ( e.target.value < 0 ) setHeight( false );
 		else {
@@ -17,11 +22,14 @@ export default function Height() {
 		}
 	}
 	return (
-		<input
-			type="number"
-			value={height}
-			onChange={handleHeight}
-			placeholder="Height (cm)"
-			className={heightIsValid} />
+		<div className='input-wrapper'>
+			<p className='p-input'>height</p>
+			<input
+				type="number"
+				value={height}
+				onChange={handleHeight}
+				placeholder="Height (cm)"
+				className={heightIsValid} />
+		</div>
 	);
 }
