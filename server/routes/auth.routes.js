@@ -83,7 +83,7 @@ router.post( '/login', ( req, res, next ) => {
 					process.env.TOKEN_SECRET,
 					{
 						algorithm: 'HS256',
-						expiresIn: '1h',
+						expiresIn: '1d',
 					},
 				);
 				// pass created token to frontend
