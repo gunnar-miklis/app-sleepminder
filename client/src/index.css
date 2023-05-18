@@ -48,6 +48,41 @@ p {
 	hyphens: auto;
 }
 
+body {
+	display: flex;
+	justify-content: center;
+}
+
 #root {
 	padding: 40px 30px;
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+	#root {
+		width: 70%;
+	}
+}
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+	#root {
+		width: 60%;
+	}
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+	#root {
+		width: 50%;
+	}
+}
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+	#root {
+		width: 40%;
+	}
+}
+
+@media (min-width: 1281px) {
+	#root {
+		width: 30%;
+	}
 }
