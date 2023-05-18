@@ -11,8 +11,6 @@ router.post( '/signup', ( req, res, next ) => {
 	// recieve data on submit
 	const { username, password, birth, gender, weight, height, wakeTime, sleepTips, caffeine, alcohol } = req.body;
 
-	console.log( req.body );
-
 	// NOTE: Validations
 	// check if username and password ist provided
 	if ( username === '' || password === '' ) {
