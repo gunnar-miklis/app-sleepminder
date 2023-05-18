@@ -27,4 +27,3 @@ dist-ssr
 .eslintrc.json
 
 package-lock.json
-vite.config.js
