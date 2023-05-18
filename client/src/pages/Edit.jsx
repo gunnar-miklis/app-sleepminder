@@ -57,11 +57,11 @@ export default function Edit() {
 
 	function handleUpdate( e ) {
 		e.preventDefault();
-		const birth = new Date( e.target[0].value );
-		const gender = e.target[1].value;
-		const weight = e.target[2].value;
-		const height = e.target[3].value;
-		const wakeTime = e.target[4].value;
+		const wakeTime = e.target[0].value;
+		const weight = e.target[1].value;
+		const height = e.target[2].value;
+		const gender = e.target[3].value;
+		const birth = new Date( e.target[4].value );
 		const sleepTips = [
 			e.target[5].value,
 			e.target[6].value,
@@ -130,12 +130,11 @@ export default function Edit() {
 
 				<form onSubmit={handleUpdate} className='flex-col-between flex-align-center gap-md'>
 
-					<Birth value={birth}/>
-					<Gender value={gender}/>
-					<Weight value={weight}/>
-					<Height value={height}/>
-
-					<WakeTime value={wakeTime}/>
+					<WakeTime value={wakeTime} />
+					<Weight value={weight} />
+					<Height value={height} />
+					<Gender value={gender} />
+					<Birth value={birth} />
 
 					<br/>
 
