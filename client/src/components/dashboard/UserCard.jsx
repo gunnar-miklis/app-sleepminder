@@ -29,7 +29,7 @@ export default function UserLgCard( { username, moods } ) {
 			<div className='user-card'>
 				<div className="card flex-col-center gap-sm">
 					<Avatar />
-					<h1>Hi {username}!</h1>
+					<h1 style={{ 'textAlign': 'center' }}>Hi {username}!</h1>
 					<div className='flex-row-center gap-md'>
 						<div className='flex-col-between flex-align-center'>
 							<div className='flex-row-between flex-align-center gap-sm'>

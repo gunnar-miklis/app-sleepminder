@@ -109,8 +109,8 @@ export default function Edit() {
 		return (
 			<div className='setup edit flex-col-evenly gap-lg'>
 				<div className='modal-delete-confimation gap-md' style={{ 'display': showModal }}>
-					<h1>Really want to<br/>delete your profile?</h1>
-					{ errorMessage && <p style={{ 'maxWidth': '60%' }}><strong>{errorMessage}</strong></p> }
+					<h1 style={ showElement ? { 'display': 'block' } : { 'display': 'none' }}>Really want to<br/>delete your profile?</h1>
+					{ errorMessage && <h1 style={{ 'maxWidth': '60%', 'color': 'var(--col-secondary)' }}>{errorMessage}</h1> }
 					<button className='btn-sm' onClick={handleDeleteUser} style={ showElement ? { 'display': 'block' } : { 'display': 'none' }}>YES</button>
 					<button className='btn-skip' onClick={()=>setShowModal( 'none' )} style={ showElement ? { 'display': 'block' } : { 'display': 'none' }}>don&#39;t delete</button>
 				</div>
