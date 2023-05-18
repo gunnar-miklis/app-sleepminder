@@ -6,6 +6,9 @@
 	position: relative;
 }
 .demo {
+	display: flex;
+	justify-content: center;
+	margin: -15px auto 25px;
 	font-weight: 400;
 	font-size: 0.8rem;
 }

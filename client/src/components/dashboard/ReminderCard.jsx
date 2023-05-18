@@ -55,7 +55,7 @@ export default function ReminderCard( { time, wakeTime, Testing } ) {
 		return (
 			<>
 				<h3 className="card-header">It&#39;s still time to...</h3>
-				<div className="card flex-col-between">
+				<div className="card">
 
 					{ reminder === 'relax' &&
 					<div className='flex-col-evenly flex-align-center gap-sm'>
@@ -95,7 +95,6 @@ export default function ReminderCard( { time, wakeTime, Testing } ) {
 							<h3>...use screens 💻</h3>
 						</div>
 						<div className='reminder-graphic flex-col-between flex-align-center gap-md'>
-							<h1><strong style={{ 'color': '#bb86fc', 'fontSize': '1.2em' }}>enjoy your day</strong></h1>
 							<StopHeavyMeals />
 							<Clock time={time} />
 							<WakeBedTime wakeTime={wakeTime} bedTime={bedTime} />
@@ -110,7 +109,6 @@ export default function ReminderCard( { time, wakeTime, Testing } ) {
 							<h3>...use screens 💻</h3>
 						</div>
 						<div className='reminder-graphic flex-col-between flex-align-center gap-md'>
-							<h1><strong style={{ 'color': '#bb86fc', 'fontSize': '1.2em' }}>enjoy your day</strong></h1>
 							<StopCoffee />
 							<Clock time={time} />
 							<WakeBedTime wakeTime={wakeTime} bedTime={bedTime} />
@@ -134,11 +132,11 @@ export default function ReminderCard( { time, wakeTime, Testing } ) {
 					}
 
 					<br/>
-					<form onSubmit={Testing} className='demo flex-row-evenly flex-align-center'>
-						<input placeholder='demonstrate time change'/>
-						<button>Demo</button>
-					</form>
 				</div>
+				<form onSubmit={Testing} className='demo'>
+					<input placeholder='demonstrate time change'/>
+					<button>Demo</button>
+				</form>
 			</>
 		);
 	}
