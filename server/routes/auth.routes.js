@@ -98,7 +98,8 @@ router.post( '/login', ( req, res, next ) => {
 } );
 
 // NOTE: verify user / token on protected frontend routes
-router.get( '/verify', isAuthenticated, jwtExpired, ( req, res, next ) => {
+// router.get( '/verify', isAuthenticated, jwtExpired, ( req, res, next ) => {
+router.get( '/verify', isAuthenticated, ( req, res, next ) => {
 	res.status( 200 ).json( req.payload );
 } );
 

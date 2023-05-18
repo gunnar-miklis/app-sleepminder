@@ -1,9 +1,9 @@
-# fly.toml app configuration file generated for app-sleepminder on 2023-05-18T13:57:16+02:00
+# fly.toml app configuration file generated for sleepminder on 2023-05-18T17:46:10+02:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = "app-sleepminder"
+app = "sleepminder"
 primary_region = "ams"
 
 [http_service]
