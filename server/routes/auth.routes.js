@@ -103,3 +103,4 @@ router.get( '/verify', isAuthenticated, jwtExpired, ( req, res, next ) => {
 } );
 
 module.exports = router;
+
