@@ -36,16 +36,7 @@ router.post( '/signup', ( req, res, next ) => {
 			const salt = bcrypt.genSaltSync( saltRounds );
 			const hash = bcrypt.hashSync( password, salt );
 
-			// calculate bedTime from wakeTime
-			const date = new Date();
-			const [hh, mm] = wakeTime.split( ':' );
-			date.setHours( hh );
-			date.setMinutes( mm );
-			date.setSeconds( 0 );
-			date.setHours( date.getHours() - 8 );
-			const bedTime = date.getHours().toString().padStart( 2, '0' ) + ':' + date.getMinutes().toString().padStart( 2, '0' );
-
-			const user = { username, password: hash, birth: new Date( birth ), gender, weight, height, wakeTime, bedTime, sleepTips, caffeine, alcohol, moods: [] };
+			const user = { username, password: hash, birth: new Date( birth ), gender, weight, height, wakeTime, sleepTips, caffeine, alcohol, moods: [] };
 
 			// NOTE: create new User
 			return UserModel.create( user );

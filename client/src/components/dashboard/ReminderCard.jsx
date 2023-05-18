@@ -9,24 +9,28 @@ import Spinner from '../Spinner';
 import Clock from './reminder-elements/Clock';
 import EnjoyYourDay from './reminder-elements/EnjoyYourDay';
 
-export default function ReminderCard( { time, wakeTime, bedTime, Testing } ) {
+export default function ReminderCard( { time, wakeTime, Testing } ) {
 	const [isLoading, setIsLoading] = useState( true );
 	// NOTE: reminder logic
 	const [reminder, setReminder] = useState( '' );
+	const [bedTime, setBedTime] = useState( '' );
 	useEffect( () => {
-		if ( !bedTime || !wakeTime || !time ) return;
+		if ( !wakeTime || !time ) return;
 
-		// get bedTime, convert to date
-		const wakeTimeDate = new Date();
-		let [hh, mm] = wakeTime.split( ':' );
-		wakeTimeDate.setHours( hh );
-		wakeTimeDate.setMinutes( mm );
-
-		// get wakeTime, convert to date
+		// calculate bedTime from wakeTime
 		const bedTimeDate = new Date();
-		[hh, mm] = bedTime.split( ':' );
+		let [hh, mm] = wakeTime.split( ':' );
 		bedTimeDate.setHours( hh );
 		bedTimeDate.setMinutes( mm );
+		bedTimeDate.setSeconds( 0 );
+		bedTimeDate.setHours( bedTimeDate.getHours() - 8 );
+		setBedTime( bedTimeDate.getHours().toString().padStart( 2, '0' ) + ':' + bedTimeDate.getMinutes().toString().padStart( 2, '0' ) );
+
+		// get wakeTime, convert to date
+		const wakeTimeDate = new Date();
+		[hh, mm] = wakeTime.split( ':' );
+		wakeTimeDate.setHours( hh );
+		wakeTimeDate.setMinutes( mm );
 
 		// calculation
 		if ( time.getHours() < wakeTimeDate.getHours() || time.getHours() >= bedTimeDate.getHours() ) {

@@ -9,8 +9,8 @@ router.get( '/dashboard', ( req, res, next ) => {
 	UserModel.findById( userId )
 		.then( ( foundUser ) => {
 			// pass data
-			const { _id, username, wakeTime, bedTime, moods } = foundUser;
-			res.status( 200 ).json( { _id, username, wakeTime, bedTime, moods } );
+			const { _id, username, wakeTime, moods } = foundUser;
+			res.status( 200 ).json( { _id, username, wakeTime, moods } );
 		} )
 		.catch( ( err ) => {
 			res.status( 500 ).json( { message: 'Internal Server Error' } );

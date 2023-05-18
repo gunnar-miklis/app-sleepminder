@@ -28,9 +28,6 @@ const userSchema = new Schema(
 		wakeTime: {
 			type: String,
 		},
-		bedTime: {
-			type: String,
-		},
 		sleepTips: {
 			type: [],
 		},

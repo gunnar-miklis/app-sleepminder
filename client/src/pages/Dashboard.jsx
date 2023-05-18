@@ -20,7 +20,6 @@ function Dashboard() {
 	const [moods, setMood] = useState();
 	const [showMoodCard, setShowMoodCard] = useState( true );
 	const [wakeTime, setWakeTime] = useState();
-	const [bedTime, setBedTime] = useState();
 	const [time, setTime] = useState( new Date() );
 
 	// update every 1 second
@@ -43,7 +42,6 @@ function Dashboard() {
 			.then( ( user ) => {
 				setUsername( user.data.username );
 				setWakeTime( user.data.wakeTime );
-				setBedTime( user.data.bedTime );
 				setMood( user.data.moods );
 				setIsLoading( false );
 			} )
@@ -83,7 +81,7 @@ function Dashboard() {
 				</div>
 				{ moods && <UserCard username={username} moods={moods} /> }
 				{ showMoodCard && <MoodCard time={time} addMood={addMood}/> }
-				{ wakeTime && <ReminderCard time={time} wakeTime={wakeTime} bedTime={bedTime} Testing={Testing}/> }
+				{ wakeTime && <ReminderCard time={time} wakeTime={wakeTime} Testing={Testing}/> }
 				{ moods && <LineChartCard moods={moods}/> }
 				{ moods && <DoughnutChartCard moods={moods}/> }
 
