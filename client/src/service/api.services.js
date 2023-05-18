@@ -5,7 +5,7 @@ class ApiService {
 	constructor() {
 		// connect axios
 		this.api = axios.create( {
-			baseURL: import.meta.env.VITE_APP_BACKEND_URL || 'http://localhost:2711',
+			baseURL: import.meta.env.VITE_APP_BACKEND_URI || 'http://localhost:2711',
 		} );
 
 		// interceptors get called after sending and before recieving
