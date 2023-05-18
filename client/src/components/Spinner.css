@@ -9,7 +9,7 @@
   .loading-spinner {
 	width: 55px;
 	height: 55px;
-	border: 12px solid var(--col-overlay); 
+	border: 12px solid #BB86FC66; 
 	border-top: 12px solid var(--col-btn);
 	border-radius: 50%;
 	animation: spinner 1.5s linear infinite;
