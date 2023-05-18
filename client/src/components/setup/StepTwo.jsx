@@ -1,7 +1,7 @@
 import './StepTwo.css';
 import WakeTime from './inputs/WakeTime';
 
-export default function StepTwo( { handleStepTwoSubmit } ) {
+export default function StepTwo( { user, handleStepTwoSubmit, goPreviousStep } ) {
 	return (
 		<div className='flex-col-between flex-align-center gap-md'>
 
@@ -20,10 +20,11 @@ export default function StepTwo( { handleStepTwoSubmit } ) {
 				<p>or set your wakeup time manually.</p>
 				<form onSubmit={handleStepTwoSubmit} className='flex-col-between flex-align-center gap-md'>
 
-					<WakeTime />
+					<WakeTime value={user.wakeTime} isValid={ user.wakeTime && 'valid'} />
 
 					<br/>
 					<button className="btn-sm">Next</button>
+					<button className='btn-skip' onClick={()=>goPreviousStep( 1 )}>Back</button>
 				</form>
 			</div>
 

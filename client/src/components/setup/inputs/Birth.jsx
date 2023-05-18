@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 
-export default function Birth( { value } ) {
+export default function Birth( { value, isValid } ) {
 	const [birth, setBirth] = useState();
-	const [birthIsValid, setBirthIsValid] = useState();
+	const [birthIsValid, setBirthIsValid] = useState( isValid );
 	const [inputType, setInputType] = useState( 'text' );
 
 	useEffect( ()=> {

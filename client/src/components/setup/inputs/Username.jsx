@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 
-export default function Username( { value } ) {
+export default function Username( { value, isValid } ) {
 	const [username, setUsername] = useState();
-	const [nameIsValid, setNameIsValid] = useState();
+	const [nameIsValid, setNameIsValid] = useState( isValid );
 
 	useEffect( ()=> {
 		if ( !value ) return;

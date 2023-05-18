@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 
-export default function Height( { value } ) {
+export default function Height( { value, isValid } ) {
 	const [height, setHeight] = useState();
-	const [heightIsValid, setHeightIsValid] = useState();
+	const [heightIsValid, setHeightIsValid] = useState( isValid );
 
 	useEffect( ()=> {
 		if ( !value ) return;

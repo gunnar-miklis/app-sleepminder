@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 
-export default function WakeTime( { value } ) {
+export default function WakeTime( { value, isValid } ) {
 	const [wakeTime, setWakeTime] = useState( '' );
-	const [wakeTimeIsValid, setWakeTimeIsValid] = useState();
+	const [wakeTimeIsValid, setWakeTimeIsValid] = useState( isValid );
 
 	useEffect( ()=> {
 		if ( !value ) return;

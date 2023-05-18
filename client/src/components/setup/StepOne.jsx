@@ -7,7 +7,7 @@ import Birth from './inputs/Birth';
 import Weight from './inputs/Weight';
 import Height from './inputs/Height';
 
-export default function StepOne( { handleStepOneSubmit } ) {
+export default function StepOne( { user, handleStepOneSubmit } ) {
 	return (
 		<>
 			<h1>Set your profile</h1>
@@ -15,17 +15,17 @@ export default function StepOne( { handleStepOneSubmit } ) {
 			<Avatar />
 
 			<form onSubmit={handleStepOneSubmit} className='flex-col-between flex-align-center gap-md'>
-				<Username />
+				<Username value={user.username} isValid={ user.username && 'valid'}/>
 
-				<Password />
+				<Password value={user.password} isValid={ user.password && 'valid'} />
 
-				<Birth />
+				<Birth value={user.birth} isValid={ user.birth && 'valid'}/>
 
-				<Gender />
+				<Gender value={user.gender} isValid={ user.gender && 'valid'} />
 
-				<Weight />
+				<Weight value={user.weight} isValid={ user.weight && 'valid'} />
 
-				<Height />
+				<Height value={user.height} isValid={ user.height && 'valid'} />
 
 				<br/>
 				<button type='submit' className="btn-sm">Next</button>

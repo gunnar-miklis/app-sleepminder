@@ -1,8 +1,9 @@
 import { useState } from 'react';
 
-export default function Password() {
+export default function Password( isValid ) {
 	const [password, setPassword] = useState();
-	const [passwordIsValid, setPasswordIsValid] = useState();
+	const [passwordIsValid, setPasswordIsValid] = useState( isValid );
+
 	function handlePassword( e ) {
 		if ( e.target.value ) {
 			setPassword( e.target.value );

@@ -13,7 +13,7 @@ import Spinner from '../components/Spinner';
 const user = {
 	username: '',
 	password: '',
-	birth: new Date(),
+	birth: '',
 	gender: '',
 	weight: 0,
 	height: 0,
@@ -31,6 +31,9 @@ function Setup() {
 
 	// navigate steps
 	const [currentStep, setCurrentStep] = useState( 1 );
+	function goPreviousStep( step ) {
+		setCurrentStep( step );
+	}
 
 	function handleStepOneSubmit( e ) {
 		e.preventDefault();
@@ -123,6 +126,7 @@ function Setup() {
 				<>
 					<ProgressBar currentStep={currentStep} />
 					<StepOne
+						user={user}
 						handleStepOneSubmit={handleStepOneSubmit}
 					/>
 				</>
@@ -131,7 +135,9 @@ function Setup() {
 				<>
 					<ProgressBar currentStep={currentStep} />
 					<StepTwo
+						user={user}
 						handleStepTwoSubmit={handleStepTwoSubmit}
+						goPreviousStep={goPreviousStep}
 					/>
 				</>
 				}
@@ -139,7 +145,9 @@ function Setup() {
 				<>
 					<ProgressBar currentStep={currentStep} />
 					<StepThree
+						user={user}
 						handleStepThreeSubmit={handleStepThreeSubmit}
+						goPreviousStep={goPreviousStep}
 					/>
 				</>
 				}
@@ -148,6 +156,7 @@ function Setup() {
 					<ProgressBar currentStep={currentStep} />
 					<StepFour
 						handleStepFourSubmit={handleStepFourSubmit}
+						goPreviousStep={goPreviousStep}
 						errorMessage={errorMessage}
 					/>
 				</>

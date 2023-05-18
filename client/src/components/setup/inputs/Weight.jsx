@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 
-export default function Weight( { value } ) {
+export default function Weight( { value, isValid } ) {
 	const [weight, setWeight] = useState();
-	const [weightIsValid, setWeightIsValid] = useState();
+	const [weightIsValid, setWeightIsValid] = useState( isValid );
 
 	useEffect( ()=> {
 		if ( !value ) return;

@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 
-export default function Gender( { value } ) {
+export default function Gender( { value, isValid } ) {
 	const [gender, setGender] = useState( 'What best describes your gender?' );
-	const [genderIsValid, setGenderIsValid] = useState();
+	const [genderIsValid, setGenderIsValid] = useState( isValid );
 
 	useEffect( ()=> {
 		if ( !value ) return;

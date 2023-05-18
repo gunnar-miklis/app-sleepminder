@@ -1,6 +1,6 @@
 import SleepTips from './inputs/SleepTips';
 
-export default function StepThree( { handleStepThreeSubmit } ) {
+export default function StepThree( { user, handleStepThreeSubmit, goPreviousStep } ) {
 	return (
 		<>
 
@@ -11,10 +11,11 @@ export default function StepThree( { handleStepThreeSubmit } ) {
 
 			<form onSubmit={handleStepThreeSubmit} className='flex-col-between flex-align-center gap-md'>
 
-				<SleepTips />
+				<SleepTips value={user.sleepTips} />
 
 				<br/>
 				<button className="btn-sm">Next</button>
+				<button className='btn-skip' onClick={()=>goPreviousStep( 2 )}>Back</button>
 			</form>
 
 
