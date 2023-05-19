@@ -22,9 +22,18 @@ function Welcome() {
 				</div>
 				<div className="flex-col-between flex-align-center">
 					<h1>Cross-Class Collaboration</h1>
-					<p><a href="" target="_blank">Name</a> (data)</p>
-					<p><a href="" target="_blank">Alex</a>, <a href="" target="_blank">Gabriela</a>, <a href="" target="_blank">Marta</a> (ux/ui)</p>
-					<p><a href="" target="_blank">Gunnar</a> (webDev)</p>
+					<p>
+						<a href="https://www.linkedin.com/in/angelica-blanco/" target="_blank" rel="noreferrer">Angélica Blanco</a>,
+						<a href="https://www.linkedin.com/in/juan-giussani/" target="_blank" rel="noreferrer">Juan A. Giussani</a>,
+						(data)</p>
+					<p>
+						<a href="" target="_blank">Alex</a>,
+						<a href="" target="_blank">Gabriela</a>,
+						<a href="" target="_blank">Marta</a>
+						(ux/ui)</p>
+					<p>
+						<a href="https://flowcv.me/gunnar-miklis" target="_blank" rel="noreferrer">Gunnar Miklis</a>
+						(webDev)</p>
 				</div>
 			</div>
 		);
