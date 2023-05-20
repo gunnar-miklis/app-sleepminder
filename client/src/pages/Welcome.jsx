@@ -22,7 +22,7 @@ function Welcome() {
 				</div>
 				<div className="flex-col-between flex-align-center">
 					<h1>Cross-Class Collaboration</h1>
-					<h3>🏆 Winning Project, in the Hackshows final voting! 🏆 </h3>
+					<p>🏆 <span style={{ 'color': 'var(--col-secondary)' }}>Winning Project, in the Hackshows final voting!</span> 🏆 </p>
 					<p>
 						<a href="https://www.linkedin.com/in/angelica-blanco/" target="_blank" rel="noreferrer">Angélica Blanco</a>,&nbsp;
 						<a href="https://www.linkedin.com/in/juan-giussani/" target="_blank" rel="noreferrer">Juan A. Giussani</a>&nbsp;
