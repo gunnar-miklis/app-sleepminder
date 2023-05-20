@@ -23,17 +23,17 @@ function Welcome() {
 				<div className="flex-col-between flex-align-center">
 					<h1>Cross-Class Collaboration</h1>
 					<p>
-						<a href="https://www.linkedin.com/in/angelica-blanco/" target="_blank" rel="noreferrer">Angélica Blanco</a>,
-						 <a href="https://www.linkedin.com/in/juan-giussani/" target="_blank" rel="noreferrer">Juan A. Giussani</a>
-						 (data)</p>
+						<a href="https://www.linkedin.com/in/angelica-blanco/" target="_blank" rel="noreferrer">Angélica Blanco</a>,&nbsp;
+						<a href="https://www.linkedin.com/in/juan-giussani/" target="_blank" rel="noreferrer">Juan A. Giussani</a>&nbsp;
+						(data)</p>
 					<p>
-						<a href="" target="_blank">Alex</a>,
-						 <a href="https://www.linkedin.com/in/gabcarneiro" target="_blank" rel="noreferrer">Gabriela Carneiro</a>,
-						 <a href="" target="_blank">Marta</a>
-						 (ux/ui)</p>
+						<a href="" target="_blank">Alex</a>,&nbsp;
+						<a href="https://www.linkedin.com/in/gabcarneiro" target="_blank" rel="noreferrer">Gabriela Carneiro</a>,&nbsp;
+						<a href="" target="_blank">Marta</a>&nbsp;
+						(ux/ui)</p>
 					<p>
-						<a href="https://flowcv.me/gunnar-miklis" target="_blank" rel="noreferrer">Gunnar Miklis</a>
-						 (webDev)</p>
+						<a href="https://flowcv.me/gunnar-miklis" target="_blank" rel="noreferrer">Gunnar Miklis</a>&nbsp;
+						(webDev)</p>
 				</div>
 			</div>
 		);
