@@ -7,6 +7,6 @@ Check out the [project presentation pitch](https://pitch.com/public/2dc2b9ee-670
 ### 🪧 About
 - MERN Stack Web Application
 - Final Project – Module 3 – Ironhack WebDev Bootcamp 2023.
-- Cross-Class Collaboration ( Data → UX/UI → WebDev )
+- Cross-Class Collaboration ( Data Analytics → UX/UI Design → Web Development )
 
 
