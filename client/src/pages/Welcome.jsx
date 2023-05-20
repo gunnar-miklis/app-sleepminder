@@ -24,16 +24,16 @@ function Welcome() {
 					<h1>Cross-Class Collaboration</h1>
 					<p>
 						<a href="https://www.linkedin.com/in/angelica-blanco/" target="_blank" rel="noreferrer">Angélica Blanco</a>,
-						<a href="https://www.linkedin.com/in/juan-giussani/" target="_blank" rel="noreferrer">Juan A. Giussani</a>,
-						(data)</p>
+						<a href="https://www.linkedin.com/in/juan-giussani/" target="_blank" rel="noreferrer">Juan A. Giussani</a>
+						 (data)</p>
 					<p>
 						<a href="" target="_blank">Alex</a>,
-						<a href="" target="_blank">Gabriela</a>,
+						<a href="https://www.linkedin.com/in/gabcarneiro" target="_blank" rel="noreferrer">Gabriela Carneiro</a>,
 						<a href="" target="_blank">Marta</a>
-						(ux/ui)</p>
+						 (ux/ui)</p>
 					<p>
 						<a href="https://flowcv.me/gunnar-miklis" target="_blank" rel="noreferrer">Gunnar Miklis</a>
-						(webDev)</p>
+						 (webDev)</p>
 				</div>
 			</div>
 		);
