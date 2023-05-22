@@ -30,7 +30,7 @@ function Welcome() {
 					<p>
 						<a href="" target="_blank">Alex</a>,&nbsp;
 						<a href="https://www.linkedin.com/in/gabcarneiro" target="_blank" rel="noreferrer">Gabriela Carneiro</a>,&nbsp;
-						<a href="" target="_blank">Marta</a>&nbsp;
+						<a href="https://www.linkedin.com/in/martaosowiecka" target="_blank" rel="noreferrer">Marta Osowiecka</a>&nbsp;
 						(ux/ui)</p>
 					<p>
 						<a href="https://flowcv.me/gunnar-miklis" target="_blank" rel="noreferrer">Gunnar Miklis</a>&nbsp;
