@@ -133,9 +133,9 @@ export default function ReminderCard( { time, wakeTime, Testing } ) {
 
 					<br/>
 				</div>
-				<form onSubmit={Testing} className='demonstrate'>
-					<input placeholder='type "15" or "21" to simulate time change'/>
-					<button>Demo</button>
+				<form onSubmit={Testing} className='demo'>
+					<input placeholder="DEMO: type 15, 19, 21, ..."/>
+					<button>Simulate Time Change</button>
 				</form>
 			</>
 		);
