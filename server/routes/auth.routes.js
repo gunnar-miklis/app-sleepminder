@@ -4,20 +4,20 @@ const bcrypt = require( 'bcryptjs' );
 const saltRounds = 10;
 const jwt = require( 'jsonwebtoken' );
 const { isAuthenticated } = require( '../middleware/jwt.middleware' );
-const { jwtExpired } = require( '../middleware/jwt-expired.middleware' );
+// BUG: const { jwtExpired } = require( '../middleware/jwt-expired.middleware' );
 
-// NOTE: Signup User
-router.post( '/signup', ( req, res, next ) => {
-	// recieve data on submit
+
+// DONE: signup user
+router.post( '/signup', ( req, res ) => {
+	// get user data from setup-form submit-body
 	const { username, password, birth, gender, weight, height, wakeTime, sleepTips, caffeine, alcohol } = req.body;
 
-	// NOTE: Validations
+	// DONE: validations
 	// check if username and password ist provided
 	if ( username === '' || password === '' ) {
 		res.status( 400 ).json( { message: 'Provide a Username and a Password' } );
 		return;
 	}
-
 	// validate password
 	const passwordRegex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
 	if ( !passwordRegex.test( password ) ) {
@@ -25,35 +25,53 @@ router.post( '/signup', ( req, res, next ) => {
 		return;
 	}
 
-	// check if username already exist
 	UserModel.findOne( { username } )
 		.then( ( foundUser ) => {
+			// check if username already exist
 			if ( foundUser ) {
 				res.status( 400 ).json( { message: 'Username already taken' } );
 				return;
 			}
 
+			// if all valdations passed, encrypt the password
 			const salt = bcrypt.genSaltSync( saltRounds );
 			const hash = bcrypt.hashSync( password, salt );
 
-			const user = { username, password: hash, birth: new Date( birth ), gender, weight, height, wakeTime, sleepTips, caffeine, alcohol, moods: [] };
+			// create a user object with all data
+			const user = {
+				username,
+				password: hash,
+				birth: new Date( birth ),
+				gender,
+				weight,
+				height,
+				wakeTime,
+				sleepTips,
+				caffeine,
+				alcohol,
+				moods: [],
+			};
 
-			// NOTE: create new User
+			// DONE: create new user
 			return UserModel.create( user );
 		} )
-		.then( ( createdUser ) => {
-			res.status( 201 ).json( { user: createdUser } );
+		.then( () => {
+			// sent "successfully created" message to client
+			res.status( 201 ).json( { message: 'User successfully created.' } );
 		} )
 		.catch( ( err ) => {
+			console.error( 'ERROR while signup :>>', err );
 			res.status( 500 ).json( { message: 'Internal Server Error' } );
 		} );
 } );
 
-// NOTE: login
-router.post( '/login', ( req, res, next ) => {
+
+// DONE: login user
+router.post( '/login', ( req, res ) => {
+	// get user data from login-form submit-body
 	const { username, password } = req.body;
 
-	// NOTE: Validations
+	// DONE: validations
 	// check if username and password ist provided
 	if ( username === '' || password === '' ) {
 		res.status( 400 ).json( { message: 'Provide Username and Password.' } );
@@ -64,6 +82,7 @@ router.post( '/login', ( req, res, next ) => {
 		.then( ( foundUser ) => {
 			// check if user is in database
 			if ( !foundUser ) {
+				// i don't want to reveal which input is wrong (user/password), so i show the same message in both cases
 				res.status( 400 ).json( { message: 'Wrong Credentials' } );
 				return;
 			}
@@ -71,12 +90,13 @@ router.post( '/login', ( req, res, next ) => {
 			// if user found in database check if password and hash matches
 			const passwordIsCorrect = bcrypt.compareSync( password, foundUser.password );
 
+			// create a user object with id and username for the token payload
 			const user = {
 				_id: foundUser._id,
 				username: foundUser.username,
 			};
 			if ( passwordIsCorrect ) {
-				// NOTE: create token
+				// DONE: create token
 				const payload = user;
 				const authToken = jwt.sign(
 					payload,
@@ -86,22 +106,32 @@ router.post( '/login', ( req, res, next ) => {
 						expiresIn: '1d',
 					},
 				);
-				// pass created token to frontend
+				// sent created token to the client
 				res.status( 200 ).json( { authToken } );
 			} else {
+				// if the password is not correct, show same message as mentioned above
 				res.status( 400 ).json( { message: 'Wrong Credentials' } );
 			}
 		} )
 		.catch( ( err ) => {
+			console.error( 'ERROR while login :>>', err );
 			res.status( 500 ).json( { message: 'Internal Server Error' } );
 		} );
 } );
 
-// NOTE: verify user / token on protected frontend routes
-// router.get( '/verify', isAuthenticated, jwtExpired, ( req, res, next ) => {
-router.get( '/verify', isAuthenticated, ( req, res, next ) => {
+
+// DONE: verify user-token on protected frontend routes
+router.get( '/verify', isAuthenticated, ( req, res ) => {
 	res.status( 200 ).json( req.payload );
 } );
+// BUG: when using my own "jwtExpired" middleware.
+//	this method works really great on localhost to delete expired tokens.
+//	but on the deployment server this crashes the app somehow.
+//	maybe, because there are other tokens stored as well?! idk.
+// router.get( '/verify', isAuthenticated, jwtExpired, ( req, res ) => {
+// 	res.status( 200 ).json( req.payload );
+// } );
+
 
 module.exports = router;
 
