@@ -96,7 +96,7 @@ function Setup() {
 
 		setIsLoading( true );
 		apiService.signup( user )
-			.then( ( resSignup ) => {
+			.then( () => {
 				// NOTE: after signup, also Login the user
 				apiService.login( { username: user.username, password: user.password } )
 					.then( ( resLogin ) => {
