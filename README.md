@@ -4,7 +4,7 @@
 
 Check out the [project presentation pitch](https://pitch.com/public/2dc2b9ee-6701-4c6b-a012-ae53ddba8a77), to get an overview!
 
-<img src="./SleepMinderPitch.png" height="400px" />
+<img src="./SleepMinderPitch.png" width="450px" />
 
 ### 🪧 About
 - MERN Full-Stack Web Application
