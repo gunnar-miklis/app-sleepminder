@@ -4,6 +4,7 @@ export default function Birth( { value, isValid } ) {
 	const [birth, setBirth] = useState();
 	const [birthIsValid, setBirthIsValid] = useState( isValid );
 	const [inputType, setInputType] = useState( 'text' );
+	const [today, setToday] = useState( new Date() );
 
 	useEffect( ()=> {
 		if ( !value ) return;
@@ -29,6 +30,8 @@ export default function Birth( { value, isValid } ) {
 				value={birth}
 				onChange={handleBirth}
 				placeholder="Day of birth (dd/mm/yyyy)"
+				min="1900-01-01"
+				max={today.toISOString().slice( 0, 10 )}
 				className={birthIsValid} />
 
 		</div>
