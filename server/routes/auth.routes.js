@@ -41,7 +41,7 @@ router.post( '/signup', ( req, res ) => {
 			const user = {
 				username,
 				password: hash,
-				birth: new Date( birth ),
+				birth,
 				gender,
 				weight,
 				height,
