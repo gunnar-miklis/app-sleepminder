@@ -47,6 +47,7 @@ p {
 	font-size: 12px;
 	line-height: 20px;
 }
+
 a {
 	text-decoration: none;
 
@@ -57,6 +58,43 @@ a {
 	color: var(--col-text);
 }
 
+.btn-sm, .btn-lg, .btn-skip {
+	max-height: 45px;
+
+	padding: 13px;
+	border: unset;
+	border-radius: 10px;
+
+	color: var(--col-primary);
+	background-color: var(--col-btn);
+}
+.btn-sm {
+	min-width: 160px;
+}
+.btn-lg {
+	min-width: 290px;
+}
+.btn-skip {
+	padding: 13px;
+	border-bottom: 2px solid var(--col-text );
+	border-radius: unset;
+	
+	font-weight: 400;
+	color: var(--col-text);
+	background-color: unset;
+}
+.btn-label {
+	color: var(--col-graph-light);
+	border-color: var(--col-graph-light);
+	font-size: 0.8rem;
+}
+
+.error {
+	color: var(--col-error-delete);
+	font-weight: 500;
+}
+
+/* LAYOUT ----------------------------------------------------- */
 .flex-row-between {
 	display: flex;
 	flex-direction: row;
@@ -107,40 +145,4 @@ a {
 }
 .gap-xl {
 	gap: 50px;
-}
-
-.btn-sm, .btn-lg, .btn-skip {
-	max-height: 45px;
-
-	padding: 13px;
-	border: unset;
-	border-radius: 10px;
-
-	color: var(--col-primary);
-	background-color: var(--col-btn);
-}
-.btn-sm {
-	min-width: 160px;
-}
-.btn-lg {
-	min-width: 290px;
-}
-.btn-skip {
-	padding: 13px;
-	border-bottom: 2px solid var(--col-text );
-	border-radius: unset;
-	
-	font-weight: 400;
-	color: var(--col-text);
-	background-color: unset;
-}
-.btn-label {
-	color: var(--col-graph-light);
-	border-color: var(--col-graph-light);
-	font-size: 0.8rem;
-}
-
-.error {
-	color: var(--col-error-delete);
-	font-weight: 500;
 }

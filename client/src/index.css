@@ -54,9 +54,11 @@ body {
 }
 
 #root {
+	width: 100%;
 	padding: 40px 30px;
 }
 
+/* RESPONSIVE ROOT ------------------------------------------------------------- */
 @media (min-width: 481px) and (max-width: 767px) {
 	#root {
 		width: 70%;
@@ -65,7 +67,7 @@ body {
 
 @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
 	#root {
-		width: 60%;
+		width: 50%;
 	}
 }
 

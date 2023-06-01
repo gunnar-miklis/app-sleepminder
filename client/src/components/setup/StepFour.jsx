@@ -2,7 +2,7 @@ import './StepFour.css';
 import Caffeine from './inputs/Caffeine';
 import Alcohol from './inputs/Alcohol';
 
-export default function StepFour( { handleStepFourSubmit, goPreviousStep, errorMessage } ) {
+export default function StepFour( { handleStepFourSubmit, goPreviousStep } ) {
 	return (
 		<>
 
@@ -20,8 +20,6 @@ export default function StepFour( { handleStepFourSubmit, goPreviousStep, errorM
 				<Alcohol />
 
 				<br/>
-
-				{ errorMessage && <p className="error">{errorMessage}</p> }
 
 				<button className="btn-sm">Done</button>
 				<button className='btn-skip' onClick={()=>goPreviousStep( 3 )}>Back</button>

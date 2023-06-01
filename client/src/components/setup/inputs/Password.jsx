@@ -6,14 +6,17 @@ export default function Password( isValid ) {
 
 	function handlePassword( e ) {
 		if ( e.target.value ) {
+			// if there's an input, border color will change
 			setPassword( e.target.value );
 			setPasswordIsValid( 'valid' );
 		} else {
+			// reset field
 			setPassword();
 			setPasswordIsValid();
 		}
 	}
-	// password live check
+
+	// TODO: password live check feature: validate while typing
 	// const [pwDigit, setPwDigit] = useState( '' );
 	// const [pwLower, setPwLower] = useState( '' );
 	// const [pwUpper, setPwUpper] = useState( '' );
@@ -34,21 +37,27 @@ export default function Password( isValid ) {
 	// if ( pwRegExLength.test( password ) ) {
 	// 	setPwLength( 'checked' );
 	// }
+
 	return (
 		<div className='input-wrapper'>
+
 			<p className='p-input'>password</p>
+
 			<input
 				type="password"
 				value={password}
 				onChange={handlePassword}
 				placeholder="Password"
-				className={passwordIsValid} />
+				className={passwordIsValid}
+			/>
+
 			{/* <ul>
 				<li className={pwLower}>lowercase</li>
 				<li className={pwUpper}>UPPERCASE</li>
 				<li className={pwDigit}>Number123</li>
 				<li className={pwLength}>Length: 6+</li>
 			</ul> */}
+
 		</div>
 	);
 }

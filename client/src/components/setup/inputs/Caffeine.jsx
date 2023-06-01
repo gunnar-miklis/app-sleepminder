@@ -3,14 +3,17 @@ import { useEffect, useState } from 'react';
 export default function Caffeine( { value } ) {
 	const [caffeine, setCaffeine] = useState( false );
 
+	// different behavior on signup/update
+	//	* signup: values are empty / placehoders to guide the user
+	//	* update: values are the users specific values
 	useEffect( ()=> {
 		if ( !value ) return;
 		setCaffeine( value );
 	}, [value] );
 
-
 	return (
 		<>
+
 			<div className="daily-routine">
 				<p>Caffeine</p>
 				<svg width="17" height="21" viewBox="0 0 17 21" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -54,6 +57,7 @@ export default function Caffeine( { value } ) {
 					</svg>
 				</div>
 			)}
+
 		</>
 	);
 }

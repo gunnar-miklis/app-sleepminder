@@ -1,18 +1,19 @@
 import './Dashboard.css';
-import { useContext, useEffect, useState } from 'react';
-import UserCard from '../components/dashboard/UserCard';
-import ReminderCard from '../components/dashboard/ReminderCard';
-import MoodCard from '../components/dashboard/MoodCard';
-import LineChartCard from '../components/dashboard/LineChartCard';
-import DoughnutChartCard from '../components/dashboard/DoughnutChartCard';
 import apiService from '../service/api.services';
+import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Spinner from '../components/Spinner';
-import LinkToUpdateUser from '../components/dashboard/LinkToUpdateUser';
 import { AuthContext } from '../context/auth.context';
 
-function Dashboard() {
-	const navigate = useNavigate();
+// components
+import Spinner from '../components/Spinner';
+import LinkToUpdateUser from '../components/dashboard/LinkToUpdateUser';
+import UserCard from '../components/dashboard/UserCard';
+import MoodCard from '../components/dashboard/MoodCard';
+import ReminderCard from '../components/dashboard/ReminderCard';
+import LineChartCard from '../components/dashboard/LineChartCard';
+import DoughnutChartCard from '../components/dashboard/DoughnutChartCard';
+
+export default function Dashboard() {
 	const [isLoading, setIsLoading] = useState( true );
 	const { logOutUser } = useContext( AuthContext );
 
@@ -92,5 +93,3 @@ function Dashboard() {
 		);
 	}
 }
-
-export default Dashboard;

@@ -4,6 +4,9 @@ export default function WakeTime( { value, isValid } ) {
 	const [wakeTime, setWakeTime] = useState( '' );
 	const [wakeTimeIsValid, setWakeTimeIsValid] = useState( isValid );
 
+	// different behavior on signup/update
+	//	* signup: values are empty / placehoders to guide the user
+	//	* update: values are the users specific values
 	useEffect( ()=> {
 		if ( !value ) return;
 		setWakeTime( value );
@@ -11,9 +14,11 @@ export default function WakeTime( { value, isValid } ) {
 
 	function handleWakeTime( e ) {
 		if ( e.target.value ) {
+			// if there's an input, border color will change
 			setWakeTime( e.target.value );
 			setWakeTimeIsValid( 'valid' );
 		} else {
+			// reset field
 			setWakeTime();
 			setWakeTimeIsValid();
 		}
@@ -21,7 +26,9 @@ export default function WakeTime( { value, isValid } ) {
 
 	return (
 		<div className='input-wrapper'>
+
 			<p className='p-input'>wake time</p>
+
 			<input
 				type="time"
 				value={wakeTime}
@@ -29,6 +36,7 @@ export default function WakeTime( { value, isValid } ) {
 				placeholder="wake up time"
 				className={wakeTimeIsValid}
 			/>
+
 		</div>
 	);
 }

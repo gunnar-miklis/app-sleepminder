@@ -1,23 +1,24 @@
+/* pure css spinner animation ------------------------------ */
 @keyframes spinner {
 	0% {
-	  transform: rotate(0deg);
+		transform: rotate(0deg);
 	}
+
 	100% {
-	  transform: rotate(360deg);
+		transform: rotate(360deg);
 	}
-  }
-  .loading-spinner {
+}
+.loading-spinner {
 	width: 55px;
 	height: 55px;
-	border: 12px solid #BB86FC66; 
+	border: 12px solid #BB86FC66;
 	border-top: 12px solid var(--col-btn);
 	border-radius: 50%;
 	animation: spinner 1.5s linear infinite;
-  }
-  
-  .spinner-container {
+}
+.spinner-container {
 	display: grid;
 	justify-content: center;
 	align-items: center;
 	height: 350px;
-  }
+}

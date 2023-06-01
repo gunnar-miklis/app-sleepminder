@@ -1,16 +1,21 @@
 import './Welcome.css';
 import { Link } from 'react-router-dom';
-import StartUp from '../components/StartUp';
 import { useEffect, useState } from 'react';
 
-function Welcome() {
+// components
+import StartUp from '../components/StartUp';
+
+// DONE: welcome page
+export default function Welcome() {
 	const [isStarting, setIsStarting] = useState( true );
 
+	// "fake loading screen"
 	useEffect( () => {
-		setTimeout( () => setIsStarting( false ), 5000 );
+		setTimeout( () => setIsStarting( false ), 4000 );
 	}, [] );
 
 	if ( isStarting ) {
+		// DONE: splash screen
 		return <StartUp />;
 	} else {
 		return (
@@ -33,12 +38,10 @@ function Welcome() {
 						<a href="https://www.linkedin.com/in/martaosowiecka" target="_blank" rel="noreferrer">Marta Osowiecka</a>&nbsp;
 						(ux/ui)</p>
 					<p>
-						<a href="https://flowcv.me/gunnar-miklis" target="_blank" rel="noreferrer">Gunnar Miklis</a>&nbsp;
+						<a href="https://www.linkedin.com/in/gunnar-miklis" target="_blank" rel="noreferrer">Gunnar Miklis</a>&nbsp;
 						(webDev)</p>
 				</div>
 			</div>
 		);
 	}
 }
-
-export default Welcome;

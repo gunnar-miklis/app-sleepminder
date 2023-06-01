@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-// NOTE: structure axios requests in class with class methods
+// DONE: organize/group axios requests in an API-class.
+//	each request will call a specific class methods
 class ApiService {
 	constructor() {
 		// connect axios
@@ -8,7 +9,11 @@ class ApiService {
 			baseURL: import.meta.env.VITE_APP_BACKEND_URI || 'http://localhost:3000',
 		} );
 
-		// interceptors get called after sending and before recieving
+		// COMMENT: Axios interceptors are functions that are called before an axios request is sent or after a response is received.
+		//	They can be used to modify the HTTP request or response object or to perform actions such as logging or authentication...
+		//	* Get access to request headers and bodies and response headers.
+		//	* Cancel and redirect requests.
+		//	* Modify request and response headers.
 		this.api.interceptors.request.use( ( config ) => {
 			// get token from local storage
 			const storedToken = localStorage.getItem( 'authToken' );

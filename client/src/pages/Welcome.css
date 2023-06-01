@@ -1,7 +1,11 @@
 .welcome {
 	text-align: center;
 }
+.welcome h1.brand-title {
+	font-size: 18px;
+}
 
+/* DIV: Hello and Get started ------------------------- */
 .welcome div:first-child {
 	margin-top: 50%;
 }
@@ -15,10 +19,7 @@
 	line-height: 25px;
 }
 
-.welcome h1.brand-title {
-	font-size: 18px;
-}
-
+/* DIV: Cross-Class Collaboration ---------------------- */
 .welcome div:last-child {
 	position: absolute;
 	bottom: 0;

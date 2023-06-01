@@ -3,6 +3,9 @@ import { useEffect, useState } from 'react';
 export default function Alcohol( { value } ) {
 	const [alcohol, setAlcohol] = useState( false );
 
+	// different behavior on signup/update
+	//	* signup: values are empty / placehoders to guide the user
+	//	* update: values are the users specific values
 	useEffect( ()=> {
 		if ( !value ) return;
 		setAlcohol( value );
@@ -10,6 +13,7 @@ export default function Alcohol( { value } ) {
 
 	return (
 		<>
+
 			<div className="daily-routine">
 				<p>Alcohol</p>
 				<svg width="14" height="19" viewBox="0 0 14 19" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -53,6 +57,7 @@ export default function Alcohol( { value } ) {
 					</svg>
 				</div>
 			)}
+
 		</>
 	);
 }

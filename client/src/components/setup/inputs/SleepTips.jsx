@@ -10,6 +10,9 @@ export default function SleepTips( { value } ) {
 	const [lavender, setLavender] = useState( false );
 	const [shower, setShower] = useState( false );
 
+	// different behavior on signup/update
+	//	* signup: values are empty / placehoders to guide the user
+	//	* update: values are the users specific values
 	useEffect( ()=> {
 		if ( !value ) return;
 		const setter = [setMeditation, setRead, setSounds, setYoga, setSex, setLavender, setShower];
@@ -22,6 +25,7 @@ export default function SleepTips( { value } ) {
 
 	return (
 		<div className="sleep-tips flex-col-between gap-md">
+
 			<div>
 				<input id="meditation" type="checkbox" value={meditation} onChange={( e )=>setMeditation( !meditation ? true : false )} checked={meditation}/>
 				<label htmlFor="meditation" className="btn-sm">Meditation</label>

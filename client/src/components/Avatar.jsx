@@ -4,6 +4,7 @@ import imgAvatar from './../assets/avatar.png';
 export default function Avatar() {
 	return (
 		<div className="avatar">
+
 			<div>
 				<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<circle cx="10" cy="10" r="9.5" fill="#262134" stroke="#F5F2FF"/>
@@ -11,6 +12,7 @@ export default function Avatar() {
 				</svg>
 				<img src={imgAvatar} alt="img-avatar" />
 			</div>
+
 		</div>
 	);
 }
