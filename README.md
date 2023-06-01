@@ -1,4 +1,4 @@
-# App Sleepminder
+# App SleepMinder
 
 🏆 Winning Project, in the Hackshows final voting! 🏆 
 
