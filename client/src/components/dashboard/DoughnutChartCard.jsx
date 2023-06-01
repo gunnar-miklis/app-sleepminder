@@ -5,7 +5,7 @@ import Spinner from '../Spinner';
 
 ChartJS.register( ArcElement, Tooltip, Legend );
 
-// NOTE: set chart.js options and custom hover bevhavior
+// DONE: set chart.js options and custom hover bevhavior
 export const options = {
 	responsive: true,
 	plugins: {
@@ -28,14 +28,14 @@ export const options = {
 	},
 };
 
-// Append '4d' to the colors (alpha channel), except for the hovered index
+// doughnut hover behavior: Append '4d' to the colors (alpha channel), except for the hovered index
 function handleHover( evt, item, legend ) {
 	legend.chart.data.datasets[0].backgroundColor.forEach( ( color, index, colors ) => {
 		colors[index] = index === item.index || color.length === 9 ? color : color + '4D';
 	} );
 	legend.chart.update();
 }
-// Removes the alpha channel from background colors
+// doughnut hover behavior: Removes the alpha channel from background colors
 function handleLeave( evt, item, legend ) {
 	legend.chart.data.datasets[0].backgroundColor.forEach( ( color, index, colors ) => {
 		colors[index] = color.length === 9 ? color.slice( 0, -2 ) : color;
@@ -46,18 +46,19 @@ function handleLeave( evt, item, legend ) {
 export default function DoughnutChartCard( { moods } ) {
 	const [isLoading, setIsLoading] = useState( true );
 	const [chart, setChart] = useState();
+
 	useEffect( () => {
 		// deal with async behavior
 		if ( !moods ) return;
 		const moodsCopy = moods.slice();
 
-		// NOTE: logic to summarize all values
-		// make unique, and sort descanding >> [5,4,3,2,1]
+		// DONE: functionality to summarize all values
+		// create an array with unique values, and sort descending >> [5,4,3,2,1]
 		const moodsUniqueSorted = [...new Set( moodsCopy )].sort( ( a, b ) => b-a );
 		// get the total sum for each number of [5,4,3,2,1]
 		const moodsSummarized = moodsUniqueSorted.map( ( num ) => moods.join( '' ).split( num ).length-1 );
 
-		// NOTE: draw chart
+		// DONE: draw chart
 		setChart(
 			{
 				labels: ['Great', 'Good', 'Ok', 'Bad', 'Poor'],
@@ -87,10 +88,10 @@ export default function DoughnutChartCard( { moods } ) {
 		return (
 			<>
 				<h3 className="card-header">Sleep quality overview</h3>
+
 				<div className="card flex-col-center flex-align-center gap-sm">
 					<br/>
-					{/* NOTE: condition to await async */}
-					{chart && <Doughnut options={options} data={chart} /> }
+					{ chart && <Doughnut options={options} data={chart} /> }
 					<br/>
 				</div>
 			</>

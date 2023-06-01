@@ -1,7 +1,7 @@
 // BUG: when using my own "jwtExpired" middleware.
 //	this method works really great on localhost to delete expired tokens.
 //	but on the deployment server this crashes the app somehow.
-//	maybe, because there are other tokens stored as well?! idk.
+//	maybe, because there are other tokens stored as well?! couldn't figure out in time.
 
 // NOTE: usage explained
 // if a token is expired, express-jwt will display an error message by default

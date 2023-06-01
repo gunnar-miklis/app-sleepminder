@@ -22,8 +22,8 @@ export default function Login() {
 		const password = e.target[1].value;
 		const reqBody = { username, password };
 
-		setIsLoading( true );
 		// DONE: login user, send user input to the backend via api
+		setIsLoading( true );
 		apiService.login( reqBody )
 			.then( ( res ) => {
 				// backend creates jwt token and sends to client. client stores token in local storage

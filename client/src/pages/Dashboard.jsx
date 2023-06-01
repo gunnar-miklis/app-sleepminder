@@ -1,7 +1,6 @@
 import './Dashboard.css';
 import apiService from '../service/api.services';
 import { useContext, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/auth.context';
 
 // components
@@ -23,13 +22,13 @@ export default function Dashboard() {
 	const [wakeTime, setWakeTime] = useState();
 	const [time, setTime] = useState( new Date() );
 
-	// update every 1 second
+	// COMMENT: normal behavior: update clock every 1 second
 	// useEffect( () => {
 	// 	setInterval( () => {
 	// 		setTime( new Date() );
 	// 	}, 1000 );
 	// }, [] );
-	// TESTING
+	// TESTING: set time only once for demonstration purpose
 	function Testing( e ) {
 		e.preventDefault();
 		const date = new Date();
@@ -37,39 +36,41 @@ export default function Dashboard() {
 		setTime( date );
 	}
 
-	function initializeDashboard() {
+	// DONE: get user data from backend via api, execute only once
+	useEffect( ()=> {
 		setIsLoading( true );
 		apiService.dashboard()
-			.then( ( user ) => {
-				setUsername( user.data.username );
-				setWakeTime( user.data.wakeTime );
-				setMood( user.data.moods );
+			.then( ( userFromDb ) => {
+				setUsername( userFromDb.data.username );
+				setWakeTime( userFromDb.data.wakeTime );
+				setMood( userFromDb.data.moods );
 				setIsLoading( false );
 			} )
 			.catch( ( err ) => {
 				setIsLoading( false );
 			} );
-	}
-
-	useEffect( ()=> {
-		initializeDashboard();
 	}, [] );
 
+	// DONE: update mood array on user input
 	function addMood( mood ) {
 		setIsLoading( true );
 		apiService.updateMood( { mood } )
 			.then( ( updatedMoods ) => {
+				// use the updated mood from the response immediately
 				setMood( updatedMoods.data );
+				// hide the mood card after submit, "mood card timeout"
+				setShowMoodCard( false );
 				setIsLoading( false );
 			} )
 			.catch( ( err ) => {
-				setIsLoading( false );
+				console.error( err );
 			} );
-		setShowMoodCard( false );
 	}
+
+	// TODO: reset "mood card timeout"
+	//	here we should also store and check for the day
 	useEffect( ()=> {
-		// TODO: here we should also store and check for the day
-		if ( time.getHours() > 7 ) setShowMoodCard( true );
+		if ( time.getHours() > wakeTime ) setShowMoodCard( true );
 	}, [] );
 
 	if ( isLoading ) {
@@ -77,18 +78,23 @@ export default function Dashboard() {
 	} else {
 		return (
 			<div className="dashboard flex-col-between gap-sm">
+
+				{/* navigation icon: go to user update page */}
 				<div className='nav-right'>
 					<LinkToUpdateUser />
 				</div>
+
+				{/* dashboard cards */}
 				{ moods && <UserCard username={username} moods={moods} /> }
-				{ showMoodCard && <MoodCard time={time} addMood={addMood}/> }
-				{ wakeTime && <ReminderCard time={time} wakeTime={wakeTime} Testing={Testing}/> }
-				{ moods && <LineChartCard moods={moods}/> }
-				{ moods && <DoughnutChartCard moods={moods}/> }
+				{ showMoodCard && <MoodCard addMood={addMood} /> }
+				{ wakeTime && <ReminderCard time={time} wakeTime={wakeTime} Testing={Testing} /> }
+				{ moods && <LineChartCard moods={moods} /> }
+				{ moods && <DoughnutChartCard moods={moods} /> }
 
 				<div className='flex-row-evenly'>
 					<button className='btn-skip btn-label' onClick={()=>logOutUser()}>Logout?</button>
 				</div>
+
 			</div>
 		);
 	}

@@ -1,20 +1,23 @@
 import './UserCard.css';
-import Avatar from '../Avatar';
 import { useEffect, useState } from 'react';
 import Spinner from '../Spinner';
+import Avatar from '../Avatar';
 
 export default function UserLgCard( { username, moods } ) {
 	const [isLoading, setIsLoading] = useState( true );
-	// const [longestStreak, setLongestStreak] = useState(); // COMMENT: future feature
 
+	// COMMENT: future feature: longest streak
+	const [longestStreak, setLongestStreak] = useState( 4 );
+
+	// DONE: show sum of great moods
 	const [greatNights, setGreatNights] = useState();
 	useEffect( () => {
 		// deal with async behavior
 		if ( !moods ) return;
 		const moodsCopy = moods.slice();
 
-		// NOTE: logic to summarize all 'great' values
-		// get all 'Great' moods and count the amount
+		// functionality to summarize all 'great' values:
+		//	* get all 'Great' moods and count the amount
 		const moodsFilteredByGreat = moodsCopy.filter( ( mood ) => mood === 5 ).length;
 
 		setGreatNights( moodsFilteredByGreat );
@@ -28,9 +31,13 @@ export default function UserLgCard( { username, moods } ) {
 		return (
 			<div className='user-card'>
 				<div className="card flex-col-center gap-sm">
+
 					<Avatar />
 					<h1 style={{ 'textAlign': 'center' }}>Hi {username}!</h1>
+
 					<div className='flex-row-center gap-md'>
+
+						{/* great nights */}
 						<div className='flex-col-between flex-align-center'>
 							<div className='flex-row-between flex-align-center gap-sm'>
 								<p><strong>{greatNights}</strong></p>
@@ -41,12 +48,18 @@ export default function UserLgCard( { username, moods } ) {
 							</div>
 							<p className="p-sm">Great Nights</p>
 						</div>
+
+						{/* divider */}
 						<div style={{ 'borderLeft': '1px solid gray' }}></div>
+
+						{/* COMMENT: future feature: longest streak */}
 						<div className='flex-col-between flex-align-center'>
-							<p><strong>4 nights</strong></p>
+							<p><strong>{longestStreak} nights</strong></p>
 							<p className="p-sm">Longest streak </p>
 						</div>
+
 					</div>
+
 				</div>
 			</div>
 		);

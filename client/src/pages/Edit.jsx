@@ -34,10 +34,9 @@ export default function Edit() {
 	const [caffeine, setCaffeine] = useState();
 	const [alcohol, setAlcohol] = useState();
 
-	// DONE: get user data, do only once
+	// DONE: get user data from backend via api, execute only once
 	useEffect( ()=> {
 		setIsLoading( true );
-		// DONE: get user data from backend via api
 		apiService.user()
 			.then( ( userFromDb ) => {
 				const { username, birth, gender, weight, height, wakeTime, sleepTips, caffeine, alcohol } = userFromDb.data;
@@ -57,7 +56,6 @@ export default function Edit() {
 			} )
 			.catch( ( err ) => {
 				console.error( err );
-				setIsLoading( false );
 			} );
 	}, [] );
 
@@ -83,8 +81,8 @@ export default function Edit() {
 		const caffeine = e.target[12].value;
 		const alcohol = e.target[13].value;
 
-		setIsLoading( true );
 		// DONE: update user, send user input to the backend via api
+		setIsLoading( true );
 		apiService.updateUser( { birth, gender, weight, height, wakeTime, sleepTips, caffeine, alcohol } )
 			.then( () => {
 				// redirect to dashboard page
@@ -93,16 +91,14 @@ export default function Edit() {
 			} )
 			.catch( ( err ) => {
 				console.error( err );
-				setIsLoading( false );
 			} );
 		return;
 	}
 
-	// DONE: delete user
+	// DONE: delete user, via api
 	const [showModal, setShowModal] = useState( 'none' );
 	function handleDeleteUser() {
 		setIsLoading( true );
-		// DONE: update user, send user input to the backend via api
 		apiService.deleteUser()
 			.then( ( res )=>{
 				// hide heading and buttons...
@@ -123,7 +119,6 @@ export default function Edit() {
 				setIsLoading( false );
 			} ).catch( ( err ) => {
 				console.error( err );
-				setIsLoading( false );
 			} );
 	}
 
@@ -141,7 +136,7 @@ export default function Edit() {
 					<button className='btn-skip' onClick={()=>setShowModal( 'none' )} style={ showElement ? { 'display': 'block' } : { 'display': 'none' }}>don&#39;t delete</button>
 				</div>
 
-				{/* navigation arrow: "back to dashboard" */}
+				{/* navigation icon: "back to dashboard" */}
 				<div className='flex-row-between flex-align-center'>
 					<LinkToDashboard />
 				</div>

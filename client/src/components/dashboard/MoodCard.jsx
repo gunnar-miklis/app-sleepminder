@@ -1,8 +1,11 @@
 import './MoodCard.css';
-export default function MoodCard( { time, moods, addMood } ) {
+
+export default function MoodCard( { addMood } ) {
 	return (
 		<div className="mood flex-col-between gap-sm">
+
 			<h3 className="card-header">How did you sleep last night?</h3>
+
 			<div className="card flex-row-evenly">
 				<button onClick={ ()=>addMood( 5 ) } className="flex-col-between flex-align-center gap-sm">
 					<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -36,6 +39,7 @@ export default function MoodCard( { time, moods, addMood } ) {
 					<p className="p-sm">Poor</p>
 				</button>
 			</div>
+
 		</div>
 	);
 }

@@ -127,7 +127,7 @@ router.get( '/verify', isAuthenticated, ( req, res ) => {
 // BUG: when using my own "jwtExpired" middleware.
 //	this method works really great on localhost to delete expired tokens.
 //	but on the deployment server this crashes the app somehow.
-//	maybe, because there are other tokens stored as well?! idk.
+//	maybe, because there are other tokens stored as well?! couldn't figure out in time.
 // router.get( '/verify', isAuthenticated, jwtExpired, ( req, res ) => {
 // 	res.status( 200 ).json( req.payload );
 // } );

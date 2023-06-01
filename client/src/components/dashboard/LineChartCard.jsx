@@ -23,7 +23,7 @@ ChartJS.register(
 	Legend,
 );
 
-// NOTE: import images and convert, so chart.js can read them as point styles
+// DONE: import images and convert, so chart.js can read them as "point styles"
 import imgGreat from './../../assets/moods/Great.svg';
 const cpGreat = new Image();
 cpGreat.src = imgGreat;
@@ -45,14 +45,14 @@ import Spinner from '../Spinner';
 const cpPoor = new Image();
 cpPoor.src = imgPoor;
 
-// NOTE: set chart.js options
+// DONE: set chart.js options
 export const options = {
 	responsive: true,
 	animations: {
 		tension: {
 			duration: 1300,
 			easing: 'easeInOutSine',
-			from: 0.6,
+			from: 0.7,
 			to: 0.3,
 			loop: true,
 		},
@@ -95,12 +95,13 @@ export const options = {
 export default function LineChartCard( { moods } ) {
 	const [isLoading, setIsLoading] = useState( true );
 	const [chart, setChart] = useState();
+
 	useEffect( () => {
 		// deal with async behavior
 		if ( !moods ) return;
 		const moodsCopy = moods.slice();
 
-		// NOTE: logic to show last 7 entries ( aka days )
+		// DONE: funcionality to show last 7 entries / days
 		// reverse moods, then get entry 0 to seven
 		const lastSevenMoods = moodsCopy.reverse().slice( 0, 7 );
 		const pointStyles = lastSevenMoods.map( ( mood ) => {
@@ -111,7 +112,7 @@ export default function LineChartCard( { moods } ) {
 			if ( mood === 1 ) return cpPoor;
 		} );
 
-		// NOTE: draw chart, when async 'moods' is ready
+		// draw chart
 		setChart( {
 			labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
 			datasets: [{
@@ -133,12 +134,14 @@ export default function LineChartCard( { moods } ) {
 	} else {
 		return (
 			<>
+				{/* card header */}
 				<div className='flex-row-between flex-align-baseline'>
 					<h3 className="card-header">Sleeping Mood</h3>
 					<p className='p-sm' style={{ 'color': '#D9FDED', 'textDecoration': 'underline' }}>Last 7 days</p>
 				</div>
+
+				{/* chart */}
 				<div className="card flex-col-center flex-align-center">
-					{/* NOTE: condition to await async */}
 					{ chart && <Line options={options} data={chart} /> }
 				</div>
 			</>
