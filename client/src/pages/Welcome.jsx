@@ -38,7 +38,7 @@ export default function Welcome() {
 						<a href="https://www.linkedin.com/in/martaosowiecka" target="_blank" rel="noreferrer">Marta Osowiecka</a>&nbsp;
 						(ux/ui)</p>
 					<p>
-						<a href="https://www.linkedin.com/in/gunnar-miklis" target="_blank" rel="noreferrer">Gunnar Miklis</a>&nbsp;
+						<a href="https://flowcv.me/gunnar-miklis" target="_blank" rel="noreferrer">Gunnar Miklis</a>&nbsp;
 						(webDev)</p>
 				</div>
 			</div>
