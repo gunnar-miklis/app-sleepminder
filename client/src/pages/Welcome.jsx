@@ -26,7 +26,7 @@ export default function Welcome() {
 					<Link to="/setup" className="btn-lg">Get started</Link>
 				</div>
 				<div className="flex-col-between flex-align-center">
-					<h1>Cross-Class Collaboration</h1>
+					<h1>Cross-Cohort Collaboration</h1>
 					<p>🏆 <span style={{ 'color': 'var(--col-secondary)' }}>Winning Project, in the Hackshows final voting!</span> 🏆 </p>
 					<p>
 						<a href="https://www.linkedin.com/in/angelica-blanco/" target="_blank" rel="noreferrer">Angélica Blanco</a>,&nbsp;
