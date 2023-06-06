@@ -13,7 +13,7 @@ MERN Full-Stack SPA Web Application
 
 Final Project – Module 3 – Ironhack WebDev Bootcamp 2023 _(developed in just 9 days)_
 
-Cross-Class Collaboration _( Data Analytics → UX/UI Design → Web Development )_
+Cross-Cohort Collaboration _( Data Analytics → UX/UI Design → Web Development )_
 
 
 ---
